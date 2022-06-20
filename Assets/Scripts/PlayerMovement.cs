@@ -15,14 +15,14 @@ public class PlayerMovement : MonoBehaviour
     public float jumpStrength = 10f;
 
     //Dash
-    public float dashStrength = 5f;
+    public float dashStrength = 8f;
     public bool allowDash = true;
     public bool dash = false;
     public bool justDashed = false;
-    public float dashCooldown = 3f;
+    public float dashCooldown = 1f;
     public float nextDashTime;
 
-    public bool doubleJump = false;
+    public bool allowDoubleJump = true;
     public bool alreadyDoubleJumped;
     public bool jump; //stores if the player is jumping
     public bool onLadder;
@@ -59,7 +59,7 @@ public class PlayerMovement : MonoBehaviour
         {
             jump = true;
         }
-        if (Input.GetButtonDown("Jump") && collisionSide == 0 && doubleJump && alreadyDoubleJumped == false)
+        if (Input.GetButtonDown("Jump") && collisionSide == 0 && allowDoubleJump && alreadyDoubleJumped == false)
         {
             jump = true;
             alreadyDoubleJumped = true;
@@ -149,3 +149,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 }
+
+//TODO: MOVEMENT SCRIPT - Player should dash very fast but only for a short distance
+//TODO: MOVEMENT SCRIPT - Player should dash past the ladder unless they are pressing up or down to climb it
+//TODO: MOVEMENT SCRIPT - Player should be able to dash off the ladder

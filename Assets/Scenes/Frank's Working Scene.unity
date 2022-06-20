@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 207826255}
   - component: {fileID: 207826254}
   m_Layer: 0
-  m_Name: Square (3)
+  m_Name: World Border Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -246,7 +246,7 @@ GameObject:
   - component: {fileID: 752826275}
   - component: {fileID: 752826274}
   m_Layer: 0
-  m_Name: Square (2)
+  m_Name: World Border Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -552,7 +552,7 @@ GameObject:
   - component: {fileID: 1128156023}
   - component: {fileID: 1128156025}
   m_Layer: 1
-  m_Name: Ladder1
+  m_Name: Ladder 1
   m_TagString: Ladder
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -663,7 +663,7 @@ GameObject:
   - component: {fileID: 1511331665}
   - component: {fileID: 1511331667}
   m_Layer: 0
-  m_Name: Plat2
+  m_Name: Platform 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -774,7 +774,7 @@ GameObject:
   - component: {fileID: 1654859642}
   - component: {fileID: 1654859644}
   m_Layer: 0
-  m_Name: Plat1
+  m_Name: Platform 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -934,7 +934,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 7482667652216324306, guid: 02e0c1f5fb7baeb438c9de955be436fc, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5bf684149433aa7489208fd65106552f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -953,8 +953,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1939658977}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.05, y: -2.38, z: 0}
-  m_LocalScale: {x: 0.7178, y: 1.5311, z: 1}
+  m_LocalPosition: {x: -3.3188, y: -3.3714, z: 0}
+  m_LocalScale: {x: 0.78895503, y: 0.8019538, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -974,17 +974,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 5
   onLadderSpeed: 5
-  jumpStrength: 10
   defaultGravity: 1.8
-  dashStrength: 5
+  jumpStrength: 10
+  dashStrength: 8
   allowDash: 1
   dash: 0
   justDashed: 0
-  dashCooldown: 3
-  doubleJump: 0
+  dashCooldown: 1
+  nextDashTime: 0
+  allowDoubleJump: 1
   alreadyDoubleJumped: 0
   jump: 0
   onLadder: 0
+  movement: 0
+  ladderMovement: 0
   collisionSide: 0
 --- !u!50 &1939658982
 Rigidbody2D:
@@ -1020,16 +1023,16 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.139374, y: -0.06643689}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 1.24, y: 1.71}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1, y: 1.1328737}
   m_EdgeRadius: 0
