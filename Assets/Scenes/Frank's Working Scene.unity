@@ -123,6 +123,7 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+<<<<<<< HEAD
 --- !u!1 &207826253
 GameObject:
   m_ObjectHideFlags: 0
@@ -345,6 +346,8 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+=======
+>>>>>>> bedfa2061347367fef678436dec64f26c6669282
 --- !u!1 &1035485567
 GameObject:
   m_ObjectHideFlags: 0
@@ -540,6 +543,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+<<<<<<< HEAD
 --- !u!1 &1128156022
 GameObject:
   m_ObjectHideFlags: 0
@@ -651,6 +655,8 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+=======
+>>>>>>> bedfa2061347367fef678436dec64f26c6669282
 --- !u!1 &1511331664
 GameObject:
   m_ObjectHideFlags: 0
@@ -729,7 +735,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1511331664}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.53, y: 0.7, z: 0}
+  m_LocalPosition: {x: 3.84, y: 0.64, z: 0}
   m_LocalScale: {x: 6.7432, y: 0.36630425, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -840,7 +846,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1654859641}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.25, y: -1.2, z: 0}
+  m_LocalPosition: {x: -5.8, y: -2.12, z: 0}
   m_LocalScale: {x: 3.3765, y: 0.5841, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -933,8 +939,13 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
+<<<<<<< HEAD
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 5bf684149433aa7489208fd65106552f, type: 3}
+=======
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 7482667652216324306, guid: 02e0c1f5fb7baeb438c9de955be436fc, type: 3}
+>>>>>>> bedfa2061347367fef678436dec64f26c6669282
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -972,6 +983,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6519c1744caa69c4da09bcd0de810c1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< HEAD
   moveSpeed: 5
   onLadderSpeed: 5
   defaultGravity: 1.8
@@ -988,7 +1000,13 @@ MonoBehaviour:
   onLadder: 0
   movement: 0
   ladderMovement: 0
+=======
+  moveSpeed: 5.7
+  jumpForce: 8
+  doubleJump: 0
+>>>>>>> bedfa2061347367fef678436dec64f26c6669282
   collisionSide: 0
+  alreadyDoubleJumped: 0
 --- !u!50 &1939658982
 Rigidbody2D:
   serializedVersion: 4
@@ -1004,7 +1022,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1.5
+  m_GravityScale: 1
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
