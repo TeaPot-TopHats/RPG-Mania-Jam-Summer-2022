@@ -6,6 +6,7 @@ public class PlayerMovement : MonoBehaviour
 
     //Move
     public float moveSpeed = 5f;
+    private bool facingLeft = true;
 
     //Ladder
     public float onLadderSpeed = 5f;
@@ -65,10 +66,10 @@ public class PlayerMovement : MonoBehaviour
             alreadyDoubleJumped = true;
         }
 
-        if (Time.time > nextDashTime)
+        if (Time.time > nextDashTime && allowDash)
             justDashed = false;
         {
-            if (Input.GetKeyDown(KeyCode.LeftShift))
+            if (Input.GetKeyDown(KeyCode.LeftShift) && justDashed == false)
             {
                 dash = true;
                 nextDashTime = Time.time + dashCooldown;
@@ -87,6 +88,8 @@ public class PlayerMovement : MonoBehaviour
             Rigid2D.AddForce(new Vector2(0, jumpStrength), ForceMode2D.Impulse);
             jump = false;
         }
+
+        //Ladder
         if (onLadder)
         {
             Rigid2D.gravityScale = 0f;
@@ -97,11 +100,31 @@ public class PlayerMovement : MonoBehaviour
         {
             Rigid2D.gravityScale = defaultGravity;
         }
+
+        //Dash
         if (dash && justDashed == false && onLadder == false)
         {
             Rigid2D.AddForce(new Vector2(movement * dashStrength, 0), ForceMode2D.Impulse);
             dash = false;
             justDashed = true;
+        }
+
+        //Flip Sprite
+        if (movement > 0 && facingLeft)
+        {
+            FlipSprite();
+        }
+        if (movement < 0 && !facingLeft)
+        {
+            FlipSprite();
+        }
+        void FlipSprite()
+        {
+            Vector3 currentScale = gameObject.transform.localScale;
+            currentScale.x *= -1;
+            gameObject.transform.localScale = currentScale;
+
+            facingLeft = !facingLeft;
         }
     }
 
@@ -110,7 +133,7 @@ public class PlayerMovement : MonoBehaviour
     {
         foreach(ContactPoint2D hitPos in collision.contacts)
         {
-            Debug.Log("Player is hitting side of y: " + hitPos.normal.y); 
+            //Debug.Log("Player is hitting side of y: " + hitPos.normal.y); 
             collisionSide = hitPos.normal.y;
             //resets double jump when it touches bottom
             if (collisionSide == 1)
@@ -125,7 +148,7 @@ public class PlayerMovement : MonoBehaviour
         if (collisionSide == 1)
         {
             collisionSide = 0;
-            Debug.Log("Player not touching");
+            //Debug.Log("Player not touching");
         }
     }
 
@@ -136,7 +159,7 @@ public class PlayerMovement : MonoBehaviour
         {
             onLadder = true;
             alreadyDoubleJumped = false;
-            Debug.Log("Player onLadder");
+            //Debug.Log("Player onLadder TRUE");
             Rigid2D.velocity = new Vector2(0, Rigid2D.velocity.y);
         }
     }
@@ -145,7 +168,7 @@ public class PlayerMovement : MonoBehaviour
         if (touch.CompareTag("Ladder"))
         {
             onLadder = false;
-            Debug.Log("Player NO longer on ladder");
+            //Debug.Log("Player onLadder FALSE");
         }
     }
 }
@@ -153,3 +176,4 @@ public class PlayerMovement : MonoBehaviour
 //TODO: MOVEMENT SCRIPT - Player should dash very fast but only for a short distance
 //TODO: MOVEMENT SCRIPT - Player should dash past the ladder unless they are pressing up or down to climb it
 //TODO: MOVEMENT SCRIPT - Player should be able to dash off the ladder
+//TODO: MOVEMENT SCRIPT - Get rid of sprite stuff
