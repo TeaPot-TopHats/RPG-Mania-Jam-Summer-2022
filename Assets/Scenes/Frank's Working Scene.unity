@@ -1085,18 +1085,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 5
   onLadderSpeed: 5
-  defaultGravity: 1.8
+  defaultGravity: 0
+  onTopOfLadder: 0
+  climbingLadder: 0
   jumpStrength: 10
-  dashStrength: 8
-  allowDash: 1
-  dash: 0
-  justDashed: 0
-  dashCooldown: 1
-  nextDashTime: 0
   allowDoubleJump: 1
   alreadyDoubleJumped: 0
   jump: 0
-  onLadder: 0
+  allowDash: 1
+  dash_CooldownTime: 2
+  dashStregth: 8
+  dashTime: 0.2
+  timeWhenDashEnds: 0
+  dash: 0
+  alreadyDashed: 0
+  timeWhenCooldownEnds: 0
+  isDashing: 0
   movement: 0
   ladderMovement: 0
   collisionSide: 0
@@ -1115,7 +1119,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 1.8
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
