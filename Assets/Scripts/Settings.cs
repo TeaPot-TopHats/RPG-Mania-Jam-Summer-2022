@@ -3,14 +3,26 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Audio;
+using UnityEngine.Rendering.PostProcessing;
+using System;
 
 public class Settings : MonoBehaviour
 {
     // Start is called before the first frame update
     public Dropdown resolutionDropdown;
     Resolution[] resolutions;
+    //----------------------------------------
+    [Header("Slider")]
+    public AO_GameObject settings;
+    public SliderBrightnessSettings brightnessSlider;
+    public PostProcessProfile profile;
+    //-----------------------------------------------
     void Start()
     {
+
+        //------------------------------------------------
+        brightnessSlider.slider.onValueChanged.AddListener(delegate { brightness(brightnessSlider.slider.value); });
+        //------------------------------------------------
         /*
          * First we cleared our dropdown resolution
          * Create a list of string for our resolution options
@@ -43,6 +55,26 @@ public class Settings : MonoBehaviour
         resolutionDropdown.value = currentResolutionIndex;
         resolutionDropdown.RefreshShownValue();
     }// end of start
+
+    //------------------------------------------------
+    void brightness(float currentValue)
+    {
+        float finalValue;
+        finalValue = ConvertValue(brightnessSlider.slider.minValue, brightnessSlider.slider.maxValue,
+            brightnessSlider.minSettingsValue, brightnessSlider.maxSettingsValue, currentValue);
+        profile.GetSetting<ColorGrading>().postExposure.Override(finalValue);
+        settings.bringhtnessValue = currentValue;
+        brightnessSlider.txtSlider.text = Mathf.RoundToInt(currentValue).ToString();
+        
+    }
+
+    private float ConvertValue(float virtualMin, float virtualMax, float actualMin, float actualMax, float currentValue)
+    {
+        float ration = (actualMax - actualMin) / (virtualMax - virtualMin);
+        float returnValue = ((currentValue * ration) - (virtualMin * ration)) + actualMax;
+        return returnValue;
+    }
+    //------------------------------------------------
     public void SetResolutions(int resolutionIndex)
     {
         Resolution resolution = resolutions[resolutionIndex];
