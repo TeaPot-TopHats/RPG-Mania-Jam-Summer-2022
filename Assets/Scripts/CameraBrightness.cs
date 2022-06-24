@@ -12,8 +12,8 @@ public class CameraBrightness : MonoBehaviour
     void Start()
 
     {
-        canvas.worldCamera = soCamera.gameObject.GetComponent<Camera>();
-        canvas.planeDistance = soCamera.gameObject.GetComponent<Camera>().nearClipPlane + offSetPlaneDistance;
+       // canvas.worldCamera = soCamera.gameObject.GetComponent<Camera>();
+       // canvas.planeDistance = soCamera.gameObject.GetComponent<Camera>().nearClipPlane + offSetPlaneDistance;
     }
 
     

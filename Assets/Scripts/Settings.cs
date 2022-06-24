@@ -12,16 +12,16 @@ public class Settings : MonoBehaviour
     public Dropdown resolutionDropdown;
     Resolution[] resolutions;
     //----------------------------------------
-    [Header("Slider")]
-    public AO_GameObject settings;
-    public SliderBrightnessSettings brightnessSlider;
-    public PostProcessProfile profile;
+    //[Header("Slider")]
+    //public AO_GameObject settings;
+   // public SliderBrightnessSettings brightnessSlider;
+   // public PostProcessProfile profile;
     //-----------------------------------------------
     void Start()
     {
 
         //------------------------------------------------
-        brightnessSlider.slider.onValueChanged.AddListener(delegate { brightness(brightnessSlider.slider.value); });
+      //  brightnessSlider.slider.onValueChanged.AddListener(delegate { brightness(brightnessSlider.slider.value); });
         //------------------------------------------------
         /*
          * First we cleared our dropdown resolution
@@ -57,6 +57,7 @@ public class Settings : MonoBehaviour
     }// end of start
 
     //------------------------------------------------
+   /*
     void brightness(float currentValue)
     {
         float finalValue;
@@ -74,6 +75,7 @@ public class Settings : MonoBehaviour
         float returnValue = ((currentValue * ration) - (virtualMin * ration)) + actualMax;
         return returnValue;
     }
+   */
     //------------------------------------------------
     public void SetResolutions(int resolutionIndex)
     {
