@@ -997,7 +997,9 @@ GameObject:
   - component: {fileID: 1939658982}
   - component: {fileID: 1939658983}
   - component: {fileID: 1939658981}
+  - component: {fileID: 1939658985}
   - component: {fileID: 1939658984}
+  - component: {fileID: 1939658986}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1085,33 +1087,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
-  movement: 0
-  ladderMovement: 0
   onLadderSpeed: 5
-  defaultGravity: 0
-  onTopOfLadder: 0
-  climbingLadder: 0
   jumpStrength: 10
+  collisionSide: 0
   allowDoubleJump: 1
-  alreadyDoubleJumped: 0
-  jump: 0
   crouchMoveSpeed: 3
-  crouch: 0
-  default_ColliderSizeY: 0
   crouchColliderSizeY: 0.5
+  touchingCrouching: 0
   pusheen: {fileID: 21300000, guid: 5bf684149433aa7489208fd65106552f, type: 3}
   pusheen_crouch: {fileID: 21300000, guid: 670c319de469cd84188833eb068052fd, type: 3}
-  touchingCrouching: 0
-  allowDash: 1
-  dash_CooldownTime: 2
-  dashStregth: 8
-  dashTime: 0.2
-  timeWhenDashEnds: 0
-  dash: 0
-  alreadyDashed: 0
-  timeWhenCooldownEnds: 0
-  isDashing: 0
-  collisionSide: 0
   PlayerCollider: {fileID: 1939658983}
   CrouchCheckCollider: {fileID: 1939658984}
 --- !u!50 &1939658982
@@ -1187,6 +1171,35 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.54, y: 0.72}
   m_EdgeRadius: 0
+--- !u!114 &1939658985
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1939658977}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18851533b8b64224c84ce505aa1dd147, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  allowDash: 1
+  dashTime: 0.2
+  dashStregth: 8
+  dashCooldownTime: 2
+  isDashing: 0
+--- !u!114 &1939658986
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1939658977}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30dfdfffad63323428245252c070bf32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1962603732
 GameObject:
   m_ObjectHideFlags: 0

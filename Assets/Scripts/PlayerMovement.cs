@@ -2,52 +2,38 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    //I've temporarly made all variables public for debugging. We must change it before we release the game demo
-
     //Movement
     public float moveSpeed = 5f; //movement speed
-    public float movement; //stores movement, left or right
+    public static float movement; //stores movement, left or right
 
     //Ladder
-    public float ladderMovement; //stores ladder movement, up or down
     public float onLadderSpeed = 5f; //speed on ladder
-    public float defaultGravity; //When climbing a ladder gravity is set to 0, we need to reset it at one point. This variable saves the default one
-    public bool onTopOfLadder; //saves if the player is on the ladder but not climbing
-    public bool climbingLadder; //stores if the players is climbing the ladder
+    private float ladderMovement; //stores ladder movement, up or down
+    private float defaultGravity; //When climbing a ladder gravity is set to 0, we need to reset it at one point. This variable saves the default one
+    private bool onTopOfLadder; //saves if the player is on the ladder but not climbing
+    public static bool climbingLadder; //stores if the players is climbing the ladder
 
     //Jump
     public float jumpStrength = 10f; //strength of the jump
+    public float collisionSide; //stores which side of the player is getting collided, ONLY up or down NOT right or left. See OnCollisionEnter2D
 
     //Double Jump
-    public bool allowDoubleJump = true; //allow the skill of double jumping
-    public bool alreadyDoubleJumped; //
-    public bool jump; //stores if the player should jump this allows the fixed update function to work. See fixed update function for the code
+    public bool allowDoubleJump = true;
+    private bool alreadyDoubleJumped;
+    private bool jump; //stores if the player should jump this allows the fixed update function to work. See fixed update function for the code
 
     //Crouch
     public float crouchMoveSpeed = 2f;
-    public bool crouch;
-    public float default_ColliderSizeY;
+    private bool crouch;
+    private float default_ColliderSizeY;
     public float crouchColliderSizeY = 0.5f;
-    public Sprite pusheen;
-    public Sprite pusheen_crouch;
     public bool touchingCrouching;
-
-    //Dash
-    public bool allowDash = true; //allows the skill of double jumping
-    public float dash_CooldownTime = 2f; //the cool down time to use the skill
-    public float dashStregth = 8f; //how fast the dash is
-    public float dashTime = 0.2f; //how long to dash for
-
-    public float timeWhenDashEnds; //stores current time + dashTime, telling the ifs when the dash ends
-    public bool dash; //stores if the player should dash, works for the fixed update function
-    public bool alreadyDashed; //stores if the player already dashed
-    public float timeWhenCooldownEnds; //stores current time + dash_cooldown time
-    public bool isDashing; //is the player currently dashing
+    //Crouch Sprites
+    public Sprite pusheen; //Regular Sprite
+    public Sprite pusheen_crouch; //Crouched Sprite
 
     //Sprite
     private bool facingLeft = true; //it's true by default because the sprite faces left
-
-    public float collisionSide; //stores which side of the player is getting collided, ONLY up or down NOT right or left. See OnCollisionEnter2D
 
     //Physics
     private Rigidbody2D Rigid;
@@ -56,6 +42,7 @@ public class PlayerMovement : MonoBehaviour
 
     //Collider that checks crouch
     public BoxCollider2D CrouchCheckCollider;
+
 
     //Awake gets called before Start, always
     private void Awake()
@@ -72,6 +59,7 @@ public class PlayerMovement : MonoBehaviour
         SpriteR = GetComponent<SpriteRenderer>();
         SpriteR.sprite = pusheen;
     }
+
 
     //Called before first the frame
     void Start()
@@ -108,19 +96,6 @@ public class PlayerMovement : MonoBehaviour
         {
             crouch = false;
         }
-
-
-        //Dash
-        if (alreadyDashed && Time.time >= timeWhenCooldownEnds)
-        {
-            alreadyDashed = false;
-        }
-        //Left Shift and you are pressing left or right
-        if (Input.GetKeyDown(KeyCode.LeftShift) && movement != 0 && !alreadyDashed && allowDash)
-        {
-            dash = true;
-        }
-
     }
 
 
@@ -139,9 +114,6 @@ public class PlayerMovement : MonoBehaviour
         //Ladder
         LadderMovement();
 
-        //Dash
-        DashSkill();
-
         //Flip Sprite
         if (movement > 0 && facingLeft)
         {
@@ -151,7 +123,6 @@ public class PlayerMovement : MonoBehaviour
         {
             FlipSprite();
         }
-        
     }
 
 
@@ -222,30 +193,6 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    void DashSkill()
-    {
-        if (dash && !climbingLadder)
-        {
-            Debug.Log("Dash");
-            timeWhenCooldownEnds = Time.time + dash_CooldownTime;
-
-            isDashing = true;
-            timeWhenDashEnds = Time.time + dashTime;
-            alreadyDashed = true;
-            dash = false;
-        }
-        if (isDashing && Time.time < timeWhenDashEnds && movement != 0)
-        {
-            Rigid.velocity = transform.right * movement * dashStregth;
-        }
-        if ((isDashing && Time.time > timeWhenDashEnds) || movement == 0)
-        {
-            isDashing = false;
-            Rigid.velocity = new Vector2(0, Rigid.velocity.y);
-        }
-    }
-
-
 
     //Detection of Collision. collisionSide tells you if it's hitting the top (-1) or the bottom (1) of the player collider
     private void OnCollisionEnter2D(Collision2D collision)
@@ -271,6 +218,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+
     //Detects if player is touching ladder
     private void OnTriggerEnter2D(Collider2D touch)
     {
@@ -285,7 +233,6 @@ public class PlayerMovement : MonoBehaviour
             touchingCrouching = true;
         }
     }
-
     private void OnTriggerExit2D(Collider2D touch)
     {
         if (touch.CompareTag("Ladder"))
@@ -303,11 +250,8 @@ public class PlayerMovement : MonoBehaviour
             }
         }
     }
-}
 
-//TODO: MOVEMENT SCRIPT - Comment Everything (dash)
-//TODO: MOVEMENT SCRIPT - Close range attacks, make invisible collider and isTrigger to hit
-//TODO: MOVEMENT SCRIPT - Organize things into either functions or separate scripts
-//TODO: MOVEMENT SCRIPT - Add Crouch capability
-//TODO: MOVEMENT SCRIPT - Add Wall jumps
+
+}
 //TODO: MOVEMENT SCRIPT - Fix Crouch bug (make 2 separate colliders, a bigger one that will actually trigger the touchingCrouching false)
+//TODO: MOVEMENT SCRIPT - Change OnCollisionEnter2D to get rid of the "foreach" if possible
