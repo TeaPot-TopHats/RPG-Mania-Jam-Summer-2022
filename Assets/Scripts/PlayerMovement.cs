@@ -2,115 +2,204 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    //Variables you can alter in Unity
-
-    //Move
-    public float moveSpeed = 5f;
+    //Movement
+    public float moveSpeed = 5f; //movement speed
+    public static float movement; //stores movement, left or right
 
     //Ladder
-    public float onLadderSpeed = 5f;
-    public float defaultGravity = 1.8f;
+    public float onLadderSpeed = 5f; //speed on ladder
+    private float ladderMovement; //stores ladder movement, up or down
+    private float defaultGravity; //When climbing a ladder gravity is set to 0, we need to reset it at one point. This variable saves the default one
+    private bool onTopOfLadder; //saves if the player is on the ladder but not climbing
+    public static bool climbingLadder; //stores if the players is climbing the ladder
 
     //Jump
-    public float jumpStrength = 10f;
+    public float jumpStrength = 10f; //strength of the jump
+    public float collisionSide; //stores which side of the player is getting collided, ONLY up or down NOT right or left. See OnCollisionEnter2D
 
-    //Dash
-    public float dashStrength = 8f;
-    public bool allowDash = true;
-    public bool dash = false;
-    public bool justDashed = false;
-    public float dashCooldown = 1f;
-    public float nextDashTime;
-
+    //Double Jump
     public bool allowDoubleJump = true;
-    public bool alreadyDoubleJumped;
-    public bool jump; //stores if the player is jumping
-    public bool onLadder;
+    private bool alreadyDoubleJumped;
+    private bool jump; //stores if the player should jump this allows the fixed update function to work. See fixed update function for the code
 
-    public float movement;
-    public float ladderMovement;
+    //Crouch
+    public float crouchMoveSpeed = 2f;
+    private bool crouch;
+    private float default_ColliderSizeY;
+    public float crouchColliderSizeY = 0.5f;
+    public bool touchingCrouching;
+    //Crouch Sprites
+    public Sprite pusheen; //Regular Sprite
+    public Sprite pusheen_crouch; //Crouched Sprite
 
-    //stores which side of the player is getting collided
-    public float collisionSide;
+    //Sprite
+    private bool facingLeft = true; //it's true by default because the sprite faces left
 
     //Physics
-    private Rigidbody2D Rigid2D;
+    private Rigidbody2D Rigid;
+    public BoxCollider2D PlayerCollider;
+    private SpriteRenderer SpriteR;
+
+    //Collider that checks crouch
+    public BoxCollider2D CrouchCheckCollider;
+
 
     //Awake gets called before Start, always
     private void Awake()
     {
         //Gets Rigidbody2D
-        Rigid2D = GetComponent<Rigidbody2D>();
+        Rigid = GetComponent<Rigidbody2D>();
+        defaultGravity = Rigid.gravityScale; //Grabs the default gravity from rigid body
+
+        //Get Collider
+        PlayerCollider = GetComponent<BoxCollider2D>();
+        default_ColliderSizeY = PlayerCollider.size.y;
+
+        //Gets Sprite Renderer
+        SpriteR = GetComponent<SpriteRenderer>();
+        SpriteR.sprite = pusheen;
     }
 
-    //Called before first frame
+
+    //Called before first the frame
     void Start()
     {
     }
 
+
     // Update per frame
     void Update()
     {
-        movement = Input.GetAxisRaw("Horizontal"); //detects left and right for joystick and keyboard input, can be -1 or 1
-        ladderMovement = Input.GetAxisRaw("Vertical"); //detects up and down for ladder
+        //Movement
+        movement = Input.GetAxisRaw("Horizontal");  //detects left and right for joystick and keyboard input, can be -1 or 1
+        ladderMovement = Input.GetAxisRaw("Vertical");  //detects up and down for ladder movement, can be -1 or 1
         
+
         //Detects jump key
-        if (Input.GetButtonDown("Jump") && collisionSide == 1)
+        if (Input.GetButtonDown("Jump") && collisionSide == 1 && !climbingLadder) //if collision side is the bottom and you are not climbing a ladder
         {
             jump = true;
         }
-        if (Input.GetButtonDown("Jump") && collisionSide == 0 && allowDoubleJump && alreadyDoubleJumped == false)
+        if (Input.GetButtonDown("Jump") && collisionSide == 0 && allowDoubleJump && !alreadyDoubleJumped && !climbingLadder) //if collision side 0 (mid air) you can double jump if you have not alreadyDouble jumped
         {
             jump = true;
             alreadyDoubleJumped = true;
         }
 
-        if (Time.time > nextDashTime)
-            justDashed = false;
+        
+        //Crouch
+        if (Input.GetKeyDown(KeyCode.LeftControl) && !climbingLadder)
         {
-            if (Input.GetKeyDown(KeyCode.LeftShift))
-            {
-                dash = true;
-                nextDashTime = Time.time + dashCooldown;
-            }
+            crouch = true;
+        }
+        if (Input.GetKeyUp(KeyCode.LeftControl) && !touchingCrouching)
+        {
+            crouch = false;
         }
     }
-    //Unity Liked this better for physics and stuff
+
+
+    //Unity likes this better for physics and stuff
     private void FixedUpdate()
     {
         //moves the player
-        transform.position += new Vector3(movement * Time.deltaTime * moveSpeed, 0)  ; //moves the player in the x direction,
+        MovePlayer();
+
         //Jumps
-        if (jump)
+        Jump();
+
+        //Crouch
+        Crouch();
+
+        //Ladder
+        LadderMovement();
+
+        //Flip Sprite
+        if (movement > 0 && facingLeft)
         {
-            Rigid2D.velocity = new Vector2(Rigid2D.velocity.x, 0); //makes velocity 0 before jumping
-            Rigid2D.AddForce(new Vector2(0, jumpStrength), ForceMode2D.Impulse);
-            jump = false;
+            FlipSprite();
         }
-        if (onLadder)
+        if (movement < 0 && !facingLeft)
         {
-            Rigid2D.gravityScale = 0f;
-            Rigid2D.velocity = new Vector2 (Rigid2D.velocity.x, 0);
-            transform.position += new Vector3(0, ladderMovement * Time.deltaTime * onLadderSpeed, 0) ;
-        }
-        if (onLadder == false)
-        {
-            Rigid2D.gravityScale = defaultGravity;
-        }
-        if (dash && justDashed == false && onLadder == false)
-        {
-            Rigid2D.AddForce(new Vector2(movement * dashStrength, 0), ForceMode2D.Impulse);
-            dash = false;
-            justDashed = true;
+            FlipSprite();
         }
     }
+
+
+    void MovePlayer()
+    {
+        if (!crouch)
+        {
+            transform.position += new Vector3(movement * Time.deltaTime * moveSpeed, 0); //moves the player in the x direction,
+        }
+        if (crouch)
+        {
+            transform.position += new Vector3(movement * Time.deltaTime * crouchMoveSpeed, 0); //moves the player in the x direction,
+        }
+    }
+    
+    void Jump()
+    {
+        if (jump)
+        {
+            Rigid.velocity = new Vector2(Rigid.velocity.x, 0); //makes velocity 0 before jumping
+            Rigid.AddForce(new Vector2(0, jumpStrength), ForceMode2D.Impulse);
+            jump = false;
+        }
+
+    }
+
+    void Crouch()
+    {
+        if (crouch)
+        {
+            PlayerCollider.size = new Vector2 (PlayerCollider.size.x, crouchColliderSizeY);
+            SpriteR.sprite = pusheen_crouch;
+        }
+        if (!crouch)
+        {
+            PlayerCollider.size = new Vector2(PlayerCollider.size.x, default_ColliderSizeY);
+            SpriteR.sprite = pusheen;
+        }
+    }
+
+    void FlipSprite()
+    {
+        Vector2 currentScale = gameObject.transform.localScale;
+        currentScale.x *= -1;
+        gameObject.transform.localScale = currentScale;
+
+        facingLeft = !facingLeft;
+    }
+
+    void LadderMovement()
+    {
+        if (onTopOfLadder && ladderMovement != 0)
+        {
+            climbingLadder = true;
+        }
+        if (climbingLadder && ladderMovement != 0)
+        {
+            alreadyDoubleJumped = false;
+
+            Rigid.velocity = new Vector2(0, 0);
+            Rigid.gravityScale = 0f;
+
+            transform.position += new Vector3(0, ladderMovement * Time.deltaTime * onLadderSpeed, 0);
+        }
+        if (climbingLadder == false)
+        {
+            Rigid.gravityScale = defaultGravity;
+        }
+    }
+
 
     //Detection of Collision. collisionSide tells you if it's hitting the top (-1) or the bottom (1) of the player collider
     private void OnCollisionEnter2D(Collision2D collision)
     {
         foreach(ContactPoint2D hitPos in collision.contacts)
         {
-            Debug.Log("Player is hitting side of y: " + hitPos.normal.y); 
+            //Debug.Log("Player is hitting side of y: " + hitPos.normal.y); 
             collisionSide = hitPos.normal.y;
             //resets double jump when it touches bottom
             if (collisionSide == 1)
@@ -125,31 +214,44 @@ public class PlayerMovement : MonoBehaviour
         if (collisionSide == 1)
         {
             collisionSide = 0;
-            Debug.Log("Player not touching");
+            //Debug.Log("Player not touching");
         }
     }
+
 
     //Detects if player is touching ladder
     private void OnTriggerEnter2D(Collider2D touch)
     {
         if (touch.CompareTag("Ladder"))
         {
-            onLadder = true;
-            alreadyDoubleJumped = false;
-            Debug.Log("Player onLadder");
-            Rigid2D.velocity = new Vector2(0, Rigid2D.velocity.y);
+            onTopOfLadder = true;
+            //Debug.Log("Player onLadder TRUE");
+        }
+        if (touch.CompareTag("Platform"))
+        {
+            Debug.Log("Touching above while crouching TRUE");
+            touchingCrouching = true;
         }
     }
     private void OnTriggerExit2D(Collider2D touch)
     {
         if (touch.CompareTag("Ladder"))
         {
-            onLadder = false;
-            Debug.Log("Player NO longer on ladder");
+            climbingLadder = false;
+            onTopOfLadder = false;
+            //Debug.Log("Player onLadder FALSE");
+        }
+        if (touch.CompareTag("Platform"))
+        {
+            touchingCrouching = false;
+            if (crouch && Input.GetKey(KeyCode.LeftControl) == false)
+            {
+                crouch = false;
+            }
         }
     }
-}
 
-//TODO: MOVEMENT SCRIPT - Player should dash very fast but only for a short distance
-//TODO: MOVEMENT SCRIPT - Player should dash past the ladder unless they are pressing up or down to climb it
-//TODO: MOVEMENT SCRIPT - Player should be able to dash off the ladder
+
+}
+//TODO: MOVEMENT SCRIPT - Fix Crouch bug (make 2 separate colliders, a bigger one that will actually trigger the touchingCrouching false)
+//TODO: MOVEMENT SCRIPT - Change OnCollisionEnter2D to get rid of the "foreach" if possible
