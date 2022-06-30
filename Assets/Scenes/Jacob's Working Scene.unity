@@ -356,7 +356,7 @@ GameObject:
   - component: {fileID: 1035485570}
   - component: {fileID: 1035485569}
   - component: {fileID: 1035485568}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -651,53 +651,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!1 &1479469690 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4067169153102528755, guid: 68f76948198ac0a4fb9eb8718439f666, type: 3}
-  m_PrefabInstance: {fileID: 5802187013789389059}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1479469691
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1479469690}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 142da5051d33bc6468cbb99cdef4deb3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 1939658977}
-  npcData: {fileID: 11400000, guid: b8edda104a9c7ff4f877e17b9737035e, type: 2}
---- !u!114 &1479469692
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1479469690}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d572fc095f23b264c84f0149e5c055a0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameEvent: {fileID: 11400000, guid: f5f3d19002710a14a99d618b3ba8cb2f, type: 2}
-  onEventTriggered:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1479469691}
-        m_TargetAssemblyTypeName: EnemyController, Assembly-CSharp
-        m_MethodName: EventTest
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1 &1511331664
 GameObject:
   m_ObjectHideFlags: 0
@@ -709,7 +662,7 @@ GameObject:
   - component: {fileID: 1511331666}
   - component: {fileID: 1511331665}
   - component: {fileID: 1511331667}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Platform 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -820,7 +773,7 @@ GameObject:
   - component: {fileID: 1654859643}
   - component: {fileID: 1654859642}
   - component: {fileID: 1654859644}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Platform 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -936,7 +889,7 @@ GameObject:
   - component: {fileID: 1939658984}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1126,11 +1079,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2207379790776185052, guid: 68f76948198ac0a4fb9eb8718439f666, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.12
+      value: 4.086
       objectReference: {fileID: 0}
     - target: {fileID: 2207379790776185052, guid: 68f76948198ac0a4fb9eb8718439f666, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.6
+      value: 4.32
       objectReference: {fileID: 0}
     - target: {fileID: 2207379790776185052, guid: 68f76948198ac0a4fb9eb8718439f666, type: 3}
       propertyPath: m_LocalPosition.z
