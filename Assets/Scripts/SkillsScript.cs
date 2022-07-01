@@ -5,12 +5,12 @@ public class SkillsScript : MonoBehaviour
     //Dash Skill
 
     //Variables to configure the dash
-    public bool allowDash = true; //allows the skill of double jumping
-    public float dashTime = 0.2f; //how long to dash for
-    public float dashStregth = 8f; //how fast the dash is
-    public float dashCooldownTime = 2f; //the cool down time to use the skill
+    [SerializeField] private bool allowDash = true; //allows the skill of double jumping
+    [SerializeField] private float dashTime = 0.2f; //how long to dash for
+    [SerializeField] private float dashStregth = 8f; //how fast the dash is
+    [SerializeField] private float dashCooldownTime = 2f; //the cool down time to use the skill
     //Variables for functionallity
-    public bool isDashing; //is the player currently dashing?
+    [SerializeField] private bool isDashing; //is the player currently dashing?
     private float timeWhenDashEnds; //stores current time + dashTime, telling the ifs when the dash ends
     private bool dash; //stores if the player should dash, works for the fixed update function
     private bool alreadyDashed; //stores if the player already dashed
@@ -61,7 +61,7 @@ public class SkillsScript : MonoBehaviour
     {
         if (dash && !PlayerMovement.climbingLadder) //you can dash if player is not climbing
         {
-            Debug.Log("Dash");
+            //Debug.Log("Dash");
             timeWhenCooldownEnds = Time.time + dashCooldownTime; //sets the time when the cooldown ends
 
             isDashing = true;

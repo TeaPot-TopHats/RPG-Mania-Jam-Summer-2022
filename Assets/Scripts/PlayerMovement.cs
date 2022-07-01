@@ -2,58 +2,61 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    //Movement
-    public float moveSpeed = 5f; //movement speed
+    [Header("Movement")]
+    [SerializeField] private float moveSpeed = 5f;
     public static float movement; //stores movement, left or right
 
-    //Ladder
-    public float onLadderSpeed = 5f; //speed on ladder
+    [Header("Ladder")]
+    [SerializeField] private float onLadderSpeed = 5f;
     private float ladderMovement; //stores ladder movement, up or down
-    private float defaultGravity; //When climbing a ladder gravity is set to 0, we need to reset it at one point. This variable saves the default one
+    private float defaultGravity;
     private bool onTopOfLadder; //saves if the player is on the ladder but not climbing
-    public static bool climbingLadder; //stores if the players is climbing the ladder
+    public static bool climbingLadder; //stores if the players is actually climbing the ladder
 
-    //Jump
-    public float jumpStrength = 10f; //strength of the jump
-    public float collisionSide; //stores which side of the player is getting collided, ONLY up or down NOT right or left. See OnCollisionEnter2D
+    [Header("Jump")]
+    [SerializeField] private float jumpStrength = 10f;
+    [SerializeField] private float collisionSide; //stores which side of the player is getting collided, ONLY up or down NOT right or left. See OnCollisionEnter2D
 
-    //Double Jump
-    public bool allowDoubleJump = true;
+    //Detect ground cast
+    private float BoxCastLength = 0.01f;
+    [SerializeField] private LayerMask platformLayerMask;
+
+    [Header("Double Jump")]
+    [SerializeField] private bool allowDoubleJump = true;
     private bool alreadyDoubleJumped;
-    private bool jump; //stores if the player should jump this allows the fixed update function to work. See fixed update function for the code
+    private bool jump; //stores if the player should jump
 
-    //Crouch
-    public float crouchMoveSpeed = 2f;
-    private bool crouch;
+    [Header("Crouch")]
+    [SerializeField] private float crouchMoveSpeed = 2f;
+    private bool crouch; //stores if the player should crouch
+    [SerializeField] private bool touchingCrouching; //stores if there's somethings above the character's head while crouching
+    //Crouch Colliders
     private float default_ColliderSizeY;
-    public float crouchColliderSizeY = 0.5f;
-    public bool touchingCrouching;
+    [SerializeField] private float crouchColliderSizeY = 0.55f;
+    //Crouch Box Cast
+    [SerializeField] private float BoxCastLength_Crouch = 0.05f;
     //Crouch Sprites
-    public Sprite pusheen; //Regular Sprite
-    public Sprite pusheen_crouch; //Crouched Sprite
+    [SerializeField] private Sprite pusheen; //Regular Sprite
+    [SerializeField] private Sprite pusheen_crouch; //Crouched Sprite
 
     //Sprite
-    private bool facingLeft = true; //it's true by default because the sprite faces left
+    private bool facingLeft = true; //original sprite faces left
 
     //Physics
     private Rigidbody2D Rigid;
-    public BoxCollider2D PlayerCollider;
+    [SerializeField] private BoxCollider2D PlayerCollider;
     private SpriteRenderer SpriteR;
-
-    //Collider that checks crouch
-    public BoxCollider2D CrouchCheckCollider;
-
 
     //Awake gets called before Start, always
     private void Awake()
     {
         //Gets Rigidbody2D
         Rigid = GetComponent<Rigidbody2D>();
-        defaultGravity = Rigid.gravityScale; //Grabs the default gravity from rigid body
+        defaultGravity = Rigid.gravityScale; //Grabs the default gravity from rigid body for ladder use
 
         //Get Collider
         PlayerCollider = GetComponent<BoxCollider2D>();
-        default_ColliderSizeY = PlayerCollider.size.y;
+        default_ColliderSizeY = PlayerCollider.size.y; //Grabs the default player collider size from collider for crouch use
 
         //Gets Sprite Renderer
         SpriteR = GetComponent<SpriteRenderer>();
@@ -73,9 +76,17 @@ public class PlayerMovement : MonoBehaviour
         //Movement
         movement = Input.GetAxisRaw("Horizontal");  //detects left and right for joystick and keyboard input, can be -1 or 1
         ladderMovement = Input.GetAxisRaw("Vertical");  //detects up and down for ladder movement, can be -1 or 1
-        
 
         //Detects jump key
+        if (IsGrounded())
+        {
+            collisionSide = 1;
+            alreadyDoubleJumped = false;
+        }
+        else
+        {
+            collisionSide = 0;
+        }
         if (Input.GetButtonDown("Jump") && collisionSide == 1 && !climbingLadder) //if collision side is the bottom and you are not climbing a ladder
         {
             jump = true;
@@ -86,8 +97,11 @@ public class PlayerMovement : MonoBehaviour
             alreadyDoubleJumped = true;
         }
 
-        
         //Crouch
+        if (collisionSide == 1)
+        {
+            CheckTouchingCrouching();
+        }
         if (Input.GetKeyDown(KeyCode.LeftControl) && !climbingLadder)
         {
             crouch = true;
@@ -96,6 +110,7 @@ public class PlayerMovement : MonoBehaviour
         {
             crouch = false;
         }
+
     }
 
 
@@ -106,6 +121,7 @@ public class PlayerMovement : MonoBehaviour
         MovePlayer();
 
         //Jumps
+
         Jump();
 
         //Crouch
@@ -130,14 +146,14 @@ public class PlayerMovement : MonoBehaviour
     {
         if (!crouch)
         {
-            transform.position += new Vector3(movement * Time.deltaTime * moveSpeed, 0); //moves the player in the x direction,
+            transform.Translate(new Vector2(movement * Time.deltaTime * moveSpeed, 0)); //moves the player in the x direction,
         }
         if (crouch)
         {
-            transform.position += new Vector3(movement * Time.deltaTime * crouchMoveSpeed, 0); //moves the player in the x direction,
+            transform.Translate(new Vector2(movement * Time.deltaTime * crouchMoveSpeed, 0)); //moves the player in the x direction,
         }
     }
-    
+
     void Jump()
     {
         if (jump)
@@ -153,7 +169,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (crouch)
         {
-            PlayerCollider.size = new Vector2 (PlayerCollider.size.x, crouchColliderSizeY);
+            PlayerCollider.size = new Vector2(PlayerCollider.size.x, crouchColliderSizeY);
             SpriteR.sprite = pusheen_crouch;
         }
         if (!crouch)
@@ -193,31 +209,49 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-
-    //Detection of Collision. collisionSide tells you if it's hitting the top (-1) or the bottom (1) of the player collider
-    private void OnCollisionEnter2D(Collision2D collision)
+    bool IsGrounded()
     {
-        foreach(ContactPoint2D hitPos in collision.contacts)
+        RaycastHit2D boxcastHit = Physics2D.BoxCast(PlayerCollider.bounds.center, PlayerCollider.bounds.size, 0f, Vector2.down, PlayerCollider.bounds.extents.y + BoxCastLength, platformLayerMask);
+        Color rayColor;
+        if (boxcastHit.collider != null)
         {
-            //Debug.Log("Player is hitting side of y: " + hitPos.normal.y); 
-            collisionSide = hitPos.normal.y;
-            //resets double jump when it touches bottom
-            if (collisionSide == 1)
-            {
-                alreadyDoubleJumped = false;
-            }
-        }       
-    }
-    //it sets the collision side to 0 because it stops touching the object
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-        if (collisionSide == 1)
-        {
-            collisionSide = 0;
-            //Debug.Log("Player not touching");
+            rayColor = Color.red;
         }
+        else
+        {
+            rayColor = Color.yellow;
+        }
+        Debug.DrawRay(PlayerCollider.bounds.center + new Vector3(PlayerCollider.bounds.extents.x, 0), Vector2.down * (PlayerCollider.bounds.extents.y + BoxCastLength), rayColor);
+        Debug.DrawRay(PlayerCollider.bounds.center - new Vector3(PlayerCollider.bounds.extents.x, 0), Vector2.down * (PlayerCollider.bounds.extents.y + BoxCastLength), rayColor);
+        Debug.DrawRay(PlayerCollider.bounds.center - new Vector3(PlayerCollider.bounds.extents.x, PlayerCollider.bounds.extents.y), Vector2.right * (PlayerCollider.bounds.extents.x * 2), rayColor);
+        return boxcastHit.collider;
     }
 
+    void CheckTouchingCrouching()
+    {
+        RaycastHit2D raycastHit = Physics2D.BoxCast(PlayerCollider.bounds.center, PlayerCollider.bounds.size + new Vector3(0.3f, 0f), 0f, Vector2.up, PlayerCollider.bounds.extents.y + BoxCastLength_Crouch, platformLayerMask);
+        Color rayColor;
+        if (raycastHit.collider != null)
+        {
+            //Debug.Log("touchingCrouching TRUE");
+            rayColor = Color.red;
+            touchingCrouching = true;
+        }
+        else
+        {
+            //Debug.Log("touchingCrouching FALSE");
+            rayColor = Color.yellow;
+            touchingCrouching = false;
+            if (crouch && Input.GetKey(KeyCode.LeftControl) == false)
+            {
+                crouch = false;
+            }
+        }
+        Debug.DrawRay(PlayerCollider.bounds.center - new Vector3(PlayerCollider.bounds.extents.x, 0) + new Vector3(-0.12f, 0.3f), Vector2.up * (PlayerCollider.bounds.extents.y + BoxCastLength_Crouch), rayColor);
+        Debug.DrawRay(PlayerCollider.bounds.center + new Vector3(PlayerCollider.bounds.extents.x, 0) + new Vector3(0.12f, 0.3f), Vector2.up * (PlayerCollider.bounds.extents.y + BoxCastLength_Crouch), rayColor);
+        Debug.DrawRay(PlayerCollider.bounds.center + new Vector3(PlayerCollider.bounds.extents.x, PlayerCollider.bounds.extents.y + BoxCastLength_Crouch) + new Vector3(0.12f, 0.3f), Vector2.left * (PlayerCollider.bounds.extents.x * 2 + 0.24f), rayColor);
+
+    }
 
     //Detects if player is touching ladder
     private void OnTriggerEnter2D(Collider2D touch)
@@ -225,12 +259,7 @@ public class PlayerMovement : MonoBehaviour
         if (touch.CompareTag("Ladder"))
         {
             onTopOfLadder = true;
-            //Debug.Log("Player onLadder TRUE");
-        }
-        if (touch.CompareTag("Platform"))
-        {
-            Debug.Log("Touching above while crouching TRUE");
-            touchingCrouching = true;
+            //Debug.Log("Player onTopOfLadder TRUE");
         }
     }
     private void OnTriggerExit2D(Collider2D touch)
@@ -239,19 +268,11 @@ public class PlayerMovement : MonoBehaviour
         {
             climbingLadder = false;
             onTopOfLadder = false;
-            //Debug.Log("Player onLadder FALSE");
-        }
-        if (touch.CompareTag("Platform"))
-        {
-            touchingCrouching = false;
-            if (crouch && Input.GetKey(KeyCode.LeftControl) == false)
-            {
-                crouch = false;
-            }
+            //Debug.Log("Player onTopOfLadder FALSE");
         }
     }
 
-
 }
 //TODO: MOVEMENT SCRIPT - Fix Crouch bug (make 2 separate colliders, a bigger one that will actually trigger the touchingCrouching false)
-//TODO: MOVEMENT SCRIPT - Change OnCollisionEnter2D to get rid of the "foreach" if possible
+//TODO: MOVEMENT SCRIPT - Fix BoxCast for IsGrounded
+//TODO: MOVEMENT SCRIPT - Check out Gizmos, and debugging mode
