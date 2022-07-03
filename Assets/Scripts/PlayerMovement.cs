@@ -147,11 +147,14 @@ public class PlayerMovement : MonoBehaviour
         if (!crouch)
         {
             transform.Translate(new Vector2(movement * Time.deltaTime * moveSpeed, 0)); //moves the player in the x direction,
+            //Rigid.velocity = new Vector2(movement * moveSpeed, Rigid.velocity.y);
         }
         if (crouch)
         {
             transform.Translate(new Vector2(movement * Time.deltaTime * crouchMoveSpeed, 0)); //moves the player in the x direction,
+            //Rigid.velocity = new Vector2(movement * crouchMoveSpeed, Rigid.velocity.y);
         }
+
     }
 
     void Jump()
@@ -211,7 +214,7 @@ public class PlayerMovement : MonoBehaviour
 
     bool IsGrounded()
     {
-        RaycastHit2D boxcastHit = Physics2D.BoxCast(PlayerCollider.bounds.center, PlayerCollider.bounds.size, 0f, Vector2.down, PlayerCollider.bounds.extents.y + BoxCastLength, platformLayerMask);
+        RaycastHit2D boxcastHit = Physics2D.BoxCast((Vector2)PlayerCollider.bounds.center, /*PlayerCollider.bounds.size*/ new Vector2(1f, 0.05f), 0f, Vector2.down, PlayerCollider.bounds.extents.y + BoxCastLength, platformLayerMask);
         Color rayColor;
         if (boxcastHit.collider != null)
         {
