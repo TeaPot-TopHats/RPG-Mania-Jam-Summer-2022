@@ -2,16 +2,51 @@ using UnityEngine;
 
 public class AttackScript : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    //Attack animation
+    public Animator animator;
+
+    //Attack stuff
+    [SerializeField] private Transform attackPoint;
+    [SerializeField] private float attackRange = 0.3f;
+    public LayerMask enemyLayer;
+
+    private bool alreadyAttacked = false;
+    
+
+    private void Start()
     {
-        
     }
 
-    // Update is called once per frame
+
     void Update()
     {
-        
+        if (Input.GetMouseButton(0) && !alreadyAttacked)
+        {
+            alreadyAttacked = true;
+            Attack();
+        }
+    }
+
+    void Attack()
+    {
+        //Attack animation
+        animator.SetTrigger("Attack");
+
+        //Gets all the enemies that the circle interacts with
+        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayer);
+
+        foreach (Collider2D enemy in hitEnemies)
+        {
+            Debug.Log("Michael Jackson Slain");
+            Destroy(enemy);
+        }
+        alreadyAttacked = false;
+    }
+
+    //Displays the atack range
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.DrawWireSphere(attackPoint.position, attackRange);
     }
 }
 //TODO: ATTACK SCRIPT - Close range attacks, make invisible collider and isTrigger to hit
