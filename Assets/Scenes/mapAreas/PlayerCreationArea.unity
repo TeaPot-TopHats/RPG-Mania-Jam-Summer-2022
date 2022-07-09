@@ -135,6 +135,7 @@ GameObject:
   - component: {fileID: 162026257}
   - component: {fileID: 162026256}
   - component: {fileID: 162026255}
+  - component: {fileID: 162026259}
   - component: {fileID: 162026254}
   - component: {fileID: 162026253}
   - component: {fileID: 162026252}
@@ -184,6 +185,7 @@ MonoBehaviour:
   enemyLayer:
     serializedVersion: 2
     m_Bits: 256
+  alreadyAttacked: 0
 --- !u!114 &162026253
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -344,6 +346,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &162026259
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 162026250}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ab131514744fdc47aefeec14d48dd78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 9
 --- !u!1 &1304121762
 GameObject:
   m_ObjectHideFlags: 0
