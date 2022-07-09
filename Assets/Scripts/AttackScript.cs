@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class AttackScript : MonoBehaviour
 {
+    
     //Attack animation
     public Animator animator;
 
@@ -15,6 +16,7 @@ public class AttackScript : MonoBehaviour
 
     private void Start()
     {
+        
     }
 
 

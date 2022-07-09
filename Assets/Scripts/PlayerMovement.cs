@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    
     [Header("Movement")]
     public static float movement; //stores movement, left or right
     [SerializeField] private float moveSpeed = 5f;
@@ -64,6 +65,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
+        
     }
 
 
