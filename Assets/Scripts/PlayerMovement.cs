@@ -266,5 +266,22 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    //Detects if player is on moving target. Transforms player position to that of platform.
+    private void OnCollisionEnter2D(Collision2D stand)
+    {
+        if (stand.gameObject.name.Equals ("Moving Platform"))
+        {
+            this.transform.parent = stand.transform;
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D stand)
+    {
+        if (stand.gameObject.name.Equals ("Moving Platform"))
+        {
+            this.transform.parent = null;
+        }
+    }
+
 }
 //TODO: MOVEMENT SCRIPT - Fix Crouch bug

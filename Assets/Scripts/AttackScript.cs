@@ -10,7 +10,7 @@ public class AttackScript : MonoBehaviour
     [SerializeField] private float attackRange = 0.3f;
     public LayerMask enemyLayer;
 
-    private bool alreadyAttacked = false;
+    public bool alreadyAttacked = false;
     
 
     private void Start()
