@@ -38,7 +38,6 @@ public class AttackScript : MonoBehaviour
         foreach (Collider2D enemy in hitEnemies)
         {
             Debug.Log("Michael Jackson Slain");
-            Destroy(enemy);
         }
         alreadyAttacked = false;
     }
