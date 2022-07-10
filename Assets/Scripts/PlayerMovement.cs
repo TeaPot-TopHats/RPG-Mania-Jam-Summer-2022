@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    
     [Header("Movement")]
     public static float movement; //stores movement, left or right
     [SerializeField] private float moveSpeed = 5f;
@@ -64,6 +65,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
+        
     }
 
 
@@ -263,6 +265,23 @@ public class PlayerMovement : MonoBehaviour
             climbingLadder = false;
             onTopOfLadder = false;
             //Debug.Log("Player onTopOfLadder FALSE");
+        }
+    }
+
+    //Detects if player is on moving target. Transforms player position to that of platform.
+    private void OnCollisionEnter2D(Collision2D stand)
+    {
+        if (stand.gameObject.name.Equals ("Moving Platform"))
+        {
+            this.transform.parent = stand.transform;
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D stand)
+    {
+        if (stand.gameObject.name.Equals ("Moving Platform"))
+        {
+            this.transform.parent = null;
         }
     }
 
