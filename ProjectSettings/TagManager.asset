@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Ladder
   - Platform
+  - Death Trap
   layers:
   - Default
   - TransparentFX
@@ -45,4 +46,7 @@ TagManager:
     locked: 0
   - name: Terrain
     uniqueID: 2914239001
+    locked: 0
+  - name: Player
+    uniqueID: 2260048989
     locked: 0
