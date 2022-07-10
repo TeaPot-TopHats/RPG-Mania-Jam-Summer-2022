@@ -1,7 +1,10 @@
 using UnityEngine;
+using System;
 
 public class test : MonoBehaviour
 {
+    public event Action test1;
+    public event Action test2;
 
     public GameEvent testEvent;
     //Variables you can alter in Unity
@@ -69,7 +72,33 @@ public class test : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.H))
         {
             Debug.Log("h clicked");
-            trigger();
+            test1 += HClicked;
+
+            //trigger();
+        }
+        else if (Input.GetKeyDown(KeyCode.J))
+        {
+            Debug.Log("j clicked");
+            test1 += JClicked;
+            //trigger();
+        }
+        else if (Input.GetKeyDown(KeyCode.K))
+        {
+            Debug.Log("k clicked");
+            test1 = test2;
+            //trigger();
+        }
+        else if (Input.GetKeyDown(KeyCode.L))
+        {
+            Debug.Log("l clicked");
+            test1 = LClicked;
+            //trigger();
+        }
+        else if (Input.GetKeyDown(KeyCode.M))
+        {
+            Debug.Log("m clicked");
+            test1();
+            //trigger();
         }
 
         if (Time.time > nextDashTime)
@@ -82,6 +111,21 @@ public class test : MonoBehaviour
             }
         }
     }
+
+    void HClicked()
+    {
+        Debug.Log("H event works");
+    }
+    void JClicked()
+    {
+        Debug.Log("J event works");
+    }
+
+    void LClicked()
+    {
+        Debug.Log("L event works");
+    }
+
     //Unity Liked this better for physics and stuff
     private void FixedUpdate()
     {
