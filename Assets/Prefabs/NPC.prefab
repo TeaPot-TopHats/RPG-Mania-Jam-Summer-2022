@@ -1,5 +1,98 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &22204186
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 22204187}
+  m_Layer: 0
+  m_Name: ChaseCheck
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &22204187
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 22204186}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2207379790776185052}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &770501069
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 770501070}
+  m_Layer: 0
+  m_Name: AttackCheck
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &770501070
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 770501069}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.994, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2207379790776185052}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1360940835
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1360940836}
+  m_Layer: 0
+  m_Name: FeetCheck
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1360940836
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1360940835}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.132, y: -0.632, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2207379790776185052}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3356288578867473478
 GameObject:
   m_ObjectHideFlags: 0
@@ -62,6 +155,37 @@ Transform:
   m_Father: {fileID: 2207379790776185052}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &3617315437281589512
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5067218502615570246}
+  m_Layer: 0
+  m_Name: VisionCheck
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5067218502615570246
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3617315437281589512}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.87, y: 0.089, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2207379790776185052}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4067169153102528755
 GameObject:
   m_ObjectHideFlags: 0
@@ -76,6 +200,8 @@ GameObject:
   - component: {fileID: 4990022170725158365}
   - component: {fileID: 1479469691}
   - component: {fileID: 1479469692}
+  - component: {fileID: 5907686228689972952}
+  - component: {fileID: 1462052501}
   m_Layer: 0
   m_Name: NPC
   m_TagString: Untagged
@@ -98,6 +224,10 @@ Transform:
   - {fileID: 1918797933044142606}
   - {fileID: 8679504356192891236}
   - {fileID: 2351804876883472790}
+  - {fileID: 1360940836}
+  - {fileID: 5067218502615570246}
+  - {fileID: 22204187}
+  - {fileID: 770501070}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -212,29 +342,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 142da5051d33bc6468cbb99cdef4deb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  EnemySensors: {fileID: 5907686228689972952}
+  EnemyBehaviors: {fileID: 1462052501}
+  patroling: 1
   Player: {fileID: 0}
+  EnemyData: {fileID: 0}
   NpcData: {fileID: 0}
-  Rigid: {fileID: 0}
   NPCCollider: {fileID: 0}
   SpriteR: {fileID: 0}
-  jump: 0
-  jumpStrength: 0
-  facingLeft: 1
-  movementDirection: -1
-  moveSpeed: 5
-  ChosenLayer:
-    serializedVersion: 2
-    m_Bits: 8
-  PreviousPosition: {fileID: 2207379790776185052}
-  SoundChecker: {fileID: 2351804876883472790}
-  WallChecker: {fileID: 8679504356192891236}
-  GroundChecker: {fileID: 1918797933044142606}
-  genericRadius: 0.3
-  soundRadius: 5
-  nearGround: 1
-  againstWall: 0
-  isFalling: 1
-  hearingNoise: 0
 --- !u!114 &1479469692
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -263,6 +378,69 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &5907686228689972952
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4067169153102528755}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8be99cd105dfc74b9856e6213a5bc65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GroundLayer:
+    serializedVersion: 2
+    m_Bits: 8
+  PlayerLayer:
+    serializedVersion: 2
+    m_Bits: 512
+  SoundChecker: {fileID: 2351804876883472790}
+  WallChecker: {fileID: 8679504356192891236}
+  GroundChecker: {fileID: 1918797933044142606}
+  FeetChecker: {fileID: 1360940836}
+  VisionChecker: {fileID: 5067218502615570246}
+  AttackChecker: {fileID: 770501070}
+  ChaseChecker: {fileID: 22204187}
+  HeardObject: {fileID: 0}
+  SeenObject: {fileID: 0}
+  FeetSize: {x: 0.66, y: 0.02}
+  VisionDistance: {x: 4.3, y: 0.69}
+  AttackZone: 0.37
+  genericRadius: 0.15
+  soundRadius: 5.09
+  chaseRadius: 5.78
+  nearGround: 0
+  feetPlanted: 0
+  againstWall: 0
+  hearingRange: 0
+  hearingNoise: 0
+  seePlayer: 0
+  seeObstruction: 0
+  canAttack: 0
+  chaseRange: 0
+--- !u!114 &1462052501
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4067169153102528755}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1cac380e003469d489791646940da8b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EnemySensors: {fileID: 5907686228689972952}
+  Rigid: {fileID: 0}
+  facingLeft: 1
+  jump: 0
+  isFalling: 0
+  jumpStrength: 2
+  movementDirection: 0
+  moveSpeed: 2
+  chaseSpeed: 4
 --- !u!1 &4828309916738279154
 GameObject:
   m_ObjectHideFlags: 0
