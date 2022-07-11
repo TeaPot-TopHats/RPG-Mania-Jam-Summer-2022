@@ -41,19 +41,31 @@ public class EnemyBehaviors : MonoBehaviour
             FlipSprite();*/
 
 
-        transform.position += new Vector3(movementDirection * Time.deltaTime * moveSpeed, 0);
-
+        //transform.position += new Vector3(movementDirection * Time.deltaTime * moveSpeed, 0);
+        Rigid.velocity = new Vector2(movementDirection * moveSpeed, Rigid.velocity.y);
     }
 
-    public void Jump()
+    public void Stop()
+    {
+        Rigid.velocity = new Vector2(0, Rigid.velocity.y);
+    }
+
+    /*public void Jump()
     {
         if (jump)
         {
             Rigid.velocity = new Vector2(Rigid.velocity.x, 0); //makes velocity 0 before jumping
             Rigid.AddForce(new Vector2(0, jumpStrength), ForceMode2D.Impulse);
             jump = false;
+            
         }
 
+    }*/
+
+    public void Jump()
+    {
+        Rigid.velocity = new Vector2(Rigid.velocity.x, 0); //makes velocity 0 before jumping
+        Rigid.AddForce(new Vector2(0, jumpStrength), ForceMode2D.Impulse);
     }
 
     public bool CheckFall()//might not need
@@ -71,7 +83,8 @@ public class EnemyBehaviors : MonoBehaviour
 
     public void Run()
     {
-        transform.position += new Vector3(movementDirection * Time.deltaTime * chaseSpeed, 0);
+        //transform.position += new Vector3(movementDirection * Time.deltaTime * chaseSpeed, 0);
+        Rigid.velocity = new Vector2(movementDirection * chaseSpeed, Rigid.velocity.y);
     }
 
 

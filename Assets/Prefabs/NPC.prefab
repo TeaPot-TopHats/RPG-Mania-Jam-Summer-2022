@@ -86,7 +86,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1360940835}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.132, y: -0.632, z: 0}
+  m_LocalPosition: {x: -0.132, y: -0.617, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -148,7 +148,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3534689402456663071}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.805, y: -0.769, z: 0}
+  m_LocalPosition: {x: -0.679, y: -0.769, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -299,10 +299,10 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 0431b5e794d72df4c89fb04f611dc8ff, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!61 &4990022170725158365
 BoxCollider2D:
@@ -313,11 +313,11 @@ BoxCollider2D:
   m_GameObject: {fileID: 4067169153102528755}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 0431b5e794d72df4c89fb04f611dc8ff, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.139374, y: -0.06643689}
+  m_Offset: {x: -0.13937402, y: -0.0499312}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -328,7 +328,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1.1328737}
+  m_Size: {x: 1, y: 1.0998623}
   m_EdgeRadius: 0
 --- !u!114 &1479469691
 MonoBehaviour:
@@ -350,6 +350,8 @@ MonoBehaviour:
   NpcData: {fileID: 0}
   NPCCollider: {fileID: 0}
   SpriteR: {fileID: 0}
+  initialChasePauseTime: 3
+  chasePauseTime: 0
 --- !u!114 &1479469692
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -408,7 +410,7 @@ MonoBehaviour:
   FeetSize: {x: 0.66, y: 0.02}
   VisionDistance: {x: 4.3, y: 0.69}
   AttackZone: 0.37
-  genericRadius: 0.15
+  genericRadius: 0.06
   soundRadius: 5.09
   chaseRadius: 5.78
   nearGround: 0
@@ -433,11 +435,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EnemySensors: {fileID: 5907686228689972952}
-  Rigid: {fileID: 0}
+  Rigid: {fileID: 5986568317224442692}
   facingLeft: 1
   jump: 0
   isFalling: 0
-  jumpStrength: 2
+  jumpStrength: 6.5
   movementDirection: 0
   moveSpeed: 2
   chaseSpeed: 4

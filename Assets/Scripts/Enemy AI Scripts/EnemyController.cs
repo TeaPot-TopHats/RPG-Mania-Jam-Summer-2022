@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class EnemyController : MonoBehaviour
 {
     //Sensor Script
@@ -23,6 +24,9 @@ public class EnemyController : MonoBehaviour
     public BoxCollider2D NPCCollider;
     public SpriteRenderer SpriteR;
 
+    public float initialChasePauseTime;
+    public float chasePauseTime;
+
 
 
 
@@ -39,6 +43,7 @@ public class EnemyController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        chasePauseTime = initialChasePauseTime;
         Player = GameObject.Find("Player");
     }
 
@@ -59,7 +64,7 @@ public class EnemyController : MonoBehaviour
         if (EnemySensors.seePlayer)
         {
             Debug.Log("Change Patrol");
-            CurrentState = Chase;
+            CurrentState = ChasePause;
         }
         else
         {
@@ -84,11 +89,11 @@ public class EnemyController : MonoBehaviour
         else
         {
             Debug.Log("Chasing");
-            if (Player.transform.position.x < transform.position.x && !EnemyBehaviors.facingLeft)
+            if (Player.transform.position.x < transform.position.x-1 && !EnemyBehaviors.facingLeft)
                 EnemyBehaviors.FlipSprite();
-            else if (Player.transform.position.x > transform.position.x && EnemyBehaviors.facingLeft)
+            else if (Player.transform.position.x > transform.position.x+1 && EnemyBehaviors.facingLeft)
                 EnemyBehaviors.FlipSprite();
-            if (EnemyBehaviors.jump)
+            if (EnemySensors.feetPlanted)
                 if (System.Math.Abs(Player.transform.position.x - transform.position.x)
                 < System.Math.Abs(Player.transform.position.y - transform.position.y))
                     EnemyBehaviors.Jump();
@@ -107,6 +112,19 @@ public class EnemyController : MonoBehaviour
     public void EventTest()
     {
         Debug.Log("Event works!!!");
+    }
+
+    void ChasePause()
+    {
+        EnemyBehaviors.Stop();
+        if (chasePauseTime > 0)
+            chasePauseTime -= Time.deltaTime;
+        else
+        {
+            chasePauseTime = initialChasePauseTime;
+            CurrentState = Chase;
+        }
+            
     }
 }
 //patrolling state
