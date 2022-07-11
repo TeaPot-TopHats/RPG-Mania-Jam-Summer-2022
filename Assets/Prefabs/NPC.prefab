@@ -202,6 +202,7 @@ GameObject:
   - component: {fileID: 1479469692}
   - component: {fileID: 5907686228689972952}
   - component: {fileID: 1462052501}
+  - component: {fileID: 1586473896}
   m_Layer: 0
   m_Name: NPC
   m_TagString: Untagged
@@ -344,14 +345,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EnemySensors: {fileID: 5907686228689972952}
   EnemyBehaviors: {fileID: 1462052501}
+  EnemyData: {fileID: 1586473896}
   patroling: 1
-  Player: {fileID: 0}
-  EnemyData: {fileID: 0}
-  NpcData: {fileID: 0}
-  NPCCollider: {fileID: 0}
-  SpriteR: {fileID: 0}
-  initialChasePauseTime: 3
-  chasePauseTime: 0
 --- !u!114 &1479469692
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -443,6 +438,26 @@ MonoBehaviour:
   movementDirection: 0
   moveSpeed: 2
   chaseSpeed: 4
+--- !u!114 &1586473896
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4067169153102528755}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 930e062c643ad6b4fb2805b6c5e2f8b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Player: {fileID: 0}
+  EnemyDataInitializer: {fileID: 11400000, guid: 1533baad040efeb4a9c07fd4ffabe9b2, type: 2}
+  chasePauseTime: 0
+  hurtDelayTime: 0
+  deathTime: 0
+  chaseTime: 0
+  startAttackTime: 0
+  attackingTime: 0
 --- !u!1 &4828309916738279154
 GameObject:
   m_ObjectHideFlags: 0

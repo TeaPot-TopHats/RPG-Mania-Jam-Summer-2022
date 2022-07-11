@@ -41,7 +41,7 @@ public class AttackScript : MonoBehaviour
 
         foreach (Collider2D enemy in hitEnemies)
         {
-            enemy.GetComponent<EnemyData>().TakeDamage(meleeDamage);
+            enemy.GetComponent<EnemyController>().Attacked(meleeDamage);
             Debug.Log("Michael Jackson took " + meleeDamage + " Damage.");
             Debug.Log("Michael Jackson has " + enemy.GetComponent<EnemyData>().currentHealth + " health.");
         }

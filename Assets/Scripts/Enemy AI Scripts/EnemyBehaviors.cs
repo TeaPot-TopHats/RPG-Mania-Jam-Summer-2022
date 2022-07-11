@@ -50,6 +50,15 @@ public class EnemyBehaviors : MonoBehaviour
         Rigid.velocity = new Vector2(0, Rigid.velocity.y);
     }
 
+    public void Knocked(bool left)
+    {
+        if (left)
+            Rigid.AddForce(new Vector2(-2, 1), ForceMode2D.Impulse);
+        else
+            Rigid.AddForce(new Vector2(2, 1), ForceMode2D.Impulse);
+
+    }
+
     /*public void Jump()
     {
         if (jump)

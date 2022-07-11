@@ -12,45 +12,20 @@ public class EnemyController : MonoBehaviour
     //Behavioral Script
     [SerializeField] EnemyBehaviors EnemyBehaviors;
 
+    //Data Script
+    [SerializeField] EnemyData EnemyData;
+
     //Actions
     [SerializeField] event Action CurrentState;
 
     //Starting States
     [SerializeField] bool patroling;
 
-    public GameObject Player;
-    public EnemyData EnemyData;
-    public NPCData NpcData;
-    public BoxCollider2D NPCCollider;
-    public SpriteRenderer SpriteR;
-
-    public float initialChasePauseTime;
-    public float chasePauseTime;
-
-
-
-
     private void Awake()
     {
         if (patroling)
             CurrentState = Patrol;
-        //NPCCollider = GetComponent<BoxCollider2D>();
-        //SpriteR = GetComponent<SpriteRenderer>();
-
-        
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        chasePauseTime = initialChasePauseTime;
-        Player = GameObject.Find("Player");
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-       
+ 
     }
 
     private void FixedUpdate()
@@ -81,21 +56,33 @@ public class EnemyController : MonoBehaviour
         Debug.Log("Starting");
         if (!EnemySensors.chaseRange)
         {
-            Debug.Log("Can't Chase");
-            CurrentState = Patrol;
+            if (EnemyData.chaseTime > 0)
+            {
+                if (EnemySensors.feetPlanted)
+                    if (System.Math.Abs(EnemyData.Player.transform.position.x - transform.position.x)
+                    < System.Math.Abs(EnemyData.Player.transform.position.y - transform.position.y))
+                        EnemyBehaviors.Jump();
+                    else if (!EnemySensors.nearGround)
+                        EnemyBehaviors.Jump();
+                EnemyBehaviors.Run();
+                EnemyData.chaseTime -= Time.deltaTime;
+            }
+            else
+                CurrentState = Patrol;
         }
         else if (EnemySensors.canAttack)
             CurrentState = Attack;
         else
         {
+            EnemyData.chaseTime = EnemyData.EnemyDataInitializer.initialChaseTime;
             Debug.Log("Chasing");
-            if (Player.transform.position.x < transform.position.x-1 && !EnemyBehaviors.facingLeft)
+            if (EnemyData.Player.transform.position.x < transform.position.x-1 && !EnemyBehaviors.facingLeft)
                 EnemyBehaviors.FlipSprite();
-            else if (Player.transform.position.x > transform.position.x+1 && EnemyBehaviors.facingLeft)
+            else if (EnemyData.Player.transform.position.x > transform.position.x+1 && EnemyBehaviors.facingLeft)
                 EnemyBehaviors.FlipSprite();
             if (EnemySensors.feetPlanted)
-                if (System.Math.Abs(Player.transform.position.x - transform.position.x)
-                < System.Math.Abs(Player.transform.position.y - transform.position.y))
+                if (System.Math.Abs(EnemyData.Player.transform.position.x - transform.position.x)
+                < System.Math.Abs(EnemyData.Player.transform.position.y - transform.position.y))
                     EnemyBehaviors.Jump();
                 else if (!EnemySensors.nearGround)
                     EnemyBehaviors.Jump();
@@ -106,8 +93,26 @@ public class EnemyController : MonoBehaviour
 
     void Attack()
     {
-        Debug.Log("ATTACK");
-        CurrentState = Chase;
+        if(EnemyData.startAttackTime > 0)
+        {
+            EnemyData.startAttackTime -= Time.deltaTime;
+        }
+        else
+        {
+            if (EnemyData.attackingTime == EnemyData.EnemyDataInitializer.initialAttackingTime)
+            {
+                //Player.Attacked(EnemyData.EnemyDataInitializer.damage);
+                EnemyData.attackingTime -= Time.deltaTime;
+            }
+            else if (EnemyData.attackingTime > 0)
+                EnemyData.attackingTime -= Time.deltaTime;
+            else 
+            {
+                EnemyData.startAttackTime = EnemyData.EnemyDataInitializer.initialStartAttackTime;
+                EnemyData.attackingTime = EnemyData.EnemyDataInitializer.initialAttackingTime;
+                CurrentState = Chase;
+            }
+        }
     }
     public void EventTest()
     {
@@ -117,15 +122,57 @@ public class EnemyController : MonoBehaviour
     void ChasePause()
     {
         EnemyBehaviors.Stop();
-        if (chasePauseTime > 0)
-            chasePauseTime -= Time.deltaTime;
+        if (EnemyData.chasePauseTime > 0)
+            EnemyData.chasePauseTime -= Time.deltaTime;
         else
         {
-            chasePauseTime = initialChasePauseTime;
+            EnemyData.chasePauseTime = EnemyData.EnemyDataInitializer.initialChasePauseTime;
             CurrentState = Chase;
         }
             
     }
+    void Hurt()
+    {
+        if (EnemyData.hurtDelayTime > 0)
+            EnemyData.hurtDelayTime -= Time.deltaTime;
+        else
+        {
+            EnemyData.hurtDelayTime = EnemyData.EnemyDataInitializer.initialHurtDelayTime;
+            CurrentState = Chase;
+        }
+    }
+
+    void Dying()
+    {
+        if(EnemyData.deathTime == EnemyData.EnemyDataInitializer.initialDeathTime)
+        {
+            EnemyData.vulnerable = false;
+            EnemyData.deathTime -= Time.deltaTime;
+        }
+        else if (EnemyData.deathTime > 0)
+            EnemyData.deathTime -= Time.deltaTime;
+        else
+        {
+            GameObject.Find("Main Camera").GetComponent<AudioManager>().Play("mj");
+            Destroy(gameObject);
+        }
+    }
+
+    public void Attacked(int receivingDamage)
+    {
+        if (EnemyData.vulnerable)
+        {
+            EnemyData.ResetTimers();
+            EnemyData.currentHealth -= receivingDamage;
+            if (EnemyData.IsDead())
+                CurrentState = Dying;
+            else
+                CurrentState = Hurt;
+        }
+
+    }
+
+    
 }
 //patrolling state
 

@@ -1255,22 +1255,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1360940836, guid: 68f76948198ac0a4fb9eb8718439f666, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.617
-      objectReference: {fileID: 0}
-    - target: {fileID: 1462052501, guid: 68f76948198ac0a4fb9eb8718439f666, type: 3}
-      propertyPath: jumpStrength
-      value: 6.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1479469691, guid: 68f76948198ac0a4fb9eb8718439f666, type: 3}
-      propertyPath: Player
-      value: 
-      objectReference: {fileID: 1939658977}
-    - target: {fileID: 1479469691, guid: 68f76948198ac0a4fb9eb8718439f666, type: 3}
-      propertyPath: initialChasePauseTime
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 2207379790776185052, guid: 68f76948198ac0a4fb9eb8718439f666, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -1318,30 +1302,6 @@ PrefabInstance:
     - target: {fileID: 4067169153102528755, guid: 68f76948198ac0a4fb9eb8718439f666, type: 3}
       propertyPath: m_Name
       value: NPC
-      objectReference: {fileID: 0}
-    - target: {fileID: 4990022170725158365, guid: 68f76948198ac0a4fb9eb8718439f666, type: 3}
-      propertyPath: m_Size.y
-      value: 1.0998623
-      objectReference: {fileID: 0}
-    - target: {fileID: 4990022170725158365, guid: 68f76948198ac0a4fb9eb8718439f666, type: 3}
-      propertyPath: m_Material
-      value: 
-      objectReference: {fileID: 6200000, guid: 0431b5e794d72df4c89fb04f611dc8ff, type: 2}
-    - target: {fileID: 4990022170725158365, guid: 68f76948198ac0a4fb9eb8718439f666, type: 3}
-      propertyPath: m_Offset.x
-      value: -0.13937402
-      objectReference: {fileID: 0}
-    - target: {fileID: 4990022170725158365, guid: 68f76948198ac0a4fb9eb8718439f666, type: 3}
-      propertyPath: m_Offset.y
-      value: -0.0499312
-      objectReference: {fileID: 0}
-    - target: {fileID: 5986568317224442692, guid: 68f76948198ac0a4fb9eb8718439f666, type: 3}
-      propertyPath: m_Material
-      value: 
-      objectReference: {fileID: 6200000, guid: 0431b5e794d72df4c89fb04f611dc8ff, type: 2}
-    - target: {fileID: 5986568317224442692, guid: 68f76948198ac0a4fb9eb8718439f666, type: 3}
-      propertyPath: m_CollisionDetection
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 68f76948198ac0a4fb9eb8718439f666, type: 3}
