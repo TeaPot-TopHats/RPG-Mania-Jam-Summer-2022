@@ -21,7 +21,8 @@ public class EnemyData : MonoBehaviour
 
     void Die()
     {
-        //Play hee hee sound
+        GameObject.Find("Main Camera").GetComponent<AudioManager>().Play("mj");
         Destroy(gameObject);
+
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class AttackScript : MonoBehaviour
@@ -6,27 +7,24 @@ public class AttackScript : MonoBehaviour
     [Header("Animations")]
     public Animator animator;
 
-    [Header("Attack")]
+    [Header("Melee or Ranged")]
+    [SerializeField] private bool melee = false;
+
+    [Header("Melee")]
     [SerializeField] private Transform attackPoint;
     [SerializeField] private float attackRange = 0.3f;
     public LayerMask enemyLayer;
 
-    [Header("Attack Cooldown")]
+    [Header("Melee Cooldown")]
     [SerializeField] private float attackCooldown = 0.8f;
     [SerializeField] private float nextAttackTime;
 
-    [Header("Damage")]
-    [SerializeField] private int damage = 3;
-
-    private void Start()
-    {
-        
-    }
-
+    [Header("Melee Damage")]
+    [SerializeField] private int meleeDamage = 3;
 
     void Update()
     {
-        if (Input.GetMouseButton(0) && Time.time >= nextAttackTime)
+        if (Input.GetMouseButton(0) && Time.time >= nextAttackTime && melee)
         {
             MeeleAttack();
             nextAttackTime = Time.time + attackCooldown;
@@ -43,8 +41,8 @@ public class AttackScript : MonoBehaviour
 
         foreach (Collider2D enemy in hitEnemies)
         {
-            enemy.GetComponent<EnemyData>().TakeDamage(damage);
-            Debug.Log("Michael Jackson took " + damage + " damage.");
+            enemy.GetComponent<EnemyData>().TakeDamage(meleeDamage);
+            Debug.Log("Michael Jackson took " + meleeDamage + " Damage.");
             Debug.Log("Michael Jackson has " + enemy.GetComponent<EnemyData>().currentHealth + " health.");
         }
     }
