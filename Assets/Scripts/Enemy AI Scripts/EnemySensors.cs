@@ -96,12 +96,19 @@ public class EnemySensors : MonoBehaviour
             if (Physics2D.OverlapBox(VisionChecker.position, VisionDistance, 0, GroundLayer))
             {
                 Debug.Log("Step 2");
+                Debug.Log(System.Math.Abs(Physics2D.OverlapBox(VisionChecker.position, VisionDistance, 0, GroundLayer).ClosestPoint(transform.position).x));
+                Debug.Log(System.Math.Abs(Physics2D.OverlapBox(VisionChecker.position, VisionDistance, 0, PlayerLayer).ClosestPoint(transform.position).x));
+                Debug.Log(Physics2D.OverlapBox(VisionChecker.position, VisionDistance, 0, GroundLayer).ClosestPoint(transform.position).x);
+                Debug.Log(Physics2D.OverlapBox(VisionChecker.position, VisionDistance, 0, PlayerLayer).ClosestPoint(transform.position).x);
+                Debug.Log(System.Math.Abs(Physics2D.OverlapBox(VisionChecker.position, VisionDistance, 0, GroundLayer).ClosestPoint(transform.position).x - transform.position.x));
+                Debug.Log(System.Math.Abs(Physics2D.OverlapBox(VisionChecker.position, VisionDistance, 0, PlayerLayer).ClosestPoint(transform.position).x - transform.position.x));
+
                 if ((System.Math.Abs(Physics2D.OverlapBox(VisionChecker.position, VisionDistance, 0, GroundLayer).ClosestPoint(transform.position).x - transform.position.x) >
                     System.Math.Abs(Physics2D.OverlapBox(VisionChecker.position, VisionDistance, 0, PlayerLayer).ClosestPoint(transform.position).x - transform.position.x)))
                 {
                     Debug.Log("testing vision:");
-                    Debug.Log(Physics2D.OverlapBox(VisionChecker.position, VisionDistance, 0, GroundLayer).ClosestPoint(transform.position).x);
-                    Debug.Log(Physics2D.OverlapBox(VisionChecker.position, VisionDistance, 0, PlayerLayer).ClosestPoint(transform.position).x);
+                    Debug.Log(System.Math.Abs(Physics2D.OverlapBox(VisionChecker.position, VisionDistance, 0, GroundLayer).ClosestPoint(transform.position).x));
+                    Debug.Log(System.Math.Abs(Physics2D.OverlapBox(VisionChecker.position, VisionDistance, 0, PlayerLayer).ClosestPoint(transform.position).x));
                     Debug.Log(transform.position.x);
                     seeObstruction = false;
                     canAttack = Physics2D.OverlapCircle(AttackChecker.position, AttackZone, PlayerLayer);

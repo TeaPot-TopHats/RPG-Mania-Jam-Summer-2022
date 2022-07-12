@@ -18,7 +18,7 @@ public class SaveData
         }// end of get
     }// end of SaveData
 
-    public PlayerProfileTest profile;
+  
     public int Guns;
     public int Catnip;
     
