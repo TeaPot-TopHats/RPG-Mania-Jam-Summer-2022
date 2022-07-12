@@ -36,7 +36,7 @@ public class EnemyController : MonoBehaviour
     void Patrol()
     {
         Debug.Log("Start Patrol");
-        if (EnemySensors.seePlayer)
+        if (EnemySensors.seePlayer && !EnemySensors.seeObstruction)
         {
             Debug.Log("Change Patrol");
             CurrentState = ChasePause;
