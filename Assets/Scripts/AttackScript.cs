@@ -8,7 +8,7 @@ public class AttackScript : MonoBehaviour
     public Animator animator;
 
     [Header("Melee or Ranged")]
-    [SerializeField] private bool melee = false;
+    [SerializeField] private bool melee = true;
 
     [Header("Melee")]
     [SerializeField] private Transform attackPoint;

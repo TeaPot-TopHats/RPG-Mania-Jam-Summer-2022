@@ -1404,7 +1404,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 1939658987}
-  melee: 0
+  melee: 1
   attackPoint: {fileID: 1114966900}
   attackRange: 0.3
   enemyLayer:
