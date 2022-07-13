@@ -9,9 +9,8 @@ public class MovingPlatform : MonoBehaviour
     [SerializeField] private float upperBound;
     [SerializeField] private float lowerBound;
     [SerializeField] private float moveSpeed;
-    private bool moveRight = true;
-    private bool moveUp = true;
-
+    [SerializeField] private bool moveRight = true;
+    [SerializeField] private bool moveUp = true;
 
     // Update is called once per frame
     void Update()
