@@ -1,37 +1,39 @@
+using System;
 using UnityEngine;
 
 public class AttackScript : MonoBehaviour
 {
-    
-    //Attack animation
+
+    [Header("Animations")]
     public Animator animator;
 
-    //Attack stuff
+    [Header("Melee or Ranged")]
+    [SerializeField] private bool melee = false;
+
+    [Header("Melee")]
     [SerializeField] private Transform attackPoint;
     [SerializeField] private float attackRange = 0.3f;
     public LayerMask enemyLayer;
 
-    public bool alreadyAttacked = false;
-    
+    [Header("Melee Cooldown")]
+    [SerializeField] private float attackCooldown = 0.8f;
+    [SerializeField] private float nextAttackTime;
 
-    private void Start()
-    {
-        
-    }
-
+    [Header("Melee Damage")]
+    [SerializeField] private int meleeDamage = 3;
 
     void Update()
     {
-        if (Input.GetMouseButton(0) && !alreadyAttacked)
+        if (Input.GetMouseButton(0) && Time.time >= nextAttackTime && melee)
         {
-            alreadyAttacked = true;
-            Attack();
+            MeeleAttack();
+            nextAttackTime = Time.time + attackCooldown;
         }
     }
 
-    void Attack()
+    void MeeleAttack()
     {
-        //Attack animation
+        //Triggers attack animation
         animator.SetTrigger("Attack");
 
         //Gets all the enemies that the circle interacts with
@@ -39,15 +41,19 @@ public class AttackScript : MonoBehaviour
 
         foreach (Collider2D enemy in hitEnemies)
         {
-            Debug.Log("Michael Jackson Slain");
+            enemy.GetComponent<EnemyController>().Attacked(meleeDamage);
+            Debug.Log("Michael Jackson took " + meleeDamage + " Damage.");
+            Debug.Log("Michael Jackson has " + enemy.GetComponent<EnemyData>().currentHealth + " health.");
         }
-        alreadyAttacked = false;
     }
 
     //Displays the atack range
     private void OnDrawGizmosSelected()
     {
+        if (attackPoint == null)
+            return;
+
         Gizmos.DrawWireSphere(attackPoint.position, attackRange);
     }
 }
-//TODO: ATTACK SCRIPT - Close range attacks, make invisible collider and isTrigger to hit
+//TODO: ATTACK SCRIPT - Add Ranged Attacks

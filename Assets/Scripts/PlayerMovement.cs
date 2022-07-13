@@ -1,15 +1,15 @@
 using UnityEngine;
 
+
 public class PlayerMovement : MonoBehaviour
 {
-    
     [Header("Movement")]
-    public static float movement; //stores movement, left or right
     [SerializeField] private float moveSpeed = 5f;
+    public static float movement; //stores movement, left or right
 
     [Header("Ladder")]
-    private float ladderMovement; //stores ladder movement, up or down
     [SerializeField] private float onLadderSpeed = 5f;
+    private float ladderMovement; //stores ladder movement, up or down
     private bool onTopOfLadder; //saves if the player is on the ladder but not climbing
     public static bool climbingLadder; //stores if the players is actually climbing the ladder
     private float defaultGravity;
@@ -27,8 +27,8 @@ public class PlayerMovement : MonoBehaviour
     private bool alreadyDoubleJumped;
 
     [Header("Crouch")]
-    public static bool crouch; //stores if the player should crouch
     [SerializeField] private float crouchMoveSpeed = 2f;
+    public static bool crouch; //stores if the player should crouch
     [SerializeField] private bool touchingCrouching; //stores if there's somethings above the character's head while crouching
     //Crouch Colliders
     private float default_ColliderSizeY;
@@ -39,12 +39,13 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Sprite pusheen; //Regular Sprite
     [SerializeField] private Sprite pusheen_crouch; //Crouched Sprite
 
-    //Sprite
+    [Header("Animation")]
+    public Animator animator;
     private bool facingLeft = true; //original sprite faces left
 
-    //Physics
-    private Rigidbody2D Rigid;
+    [Header("Physics")]
     [SerializeField] private BoxCollider2D PlayerCollider;
+    private Rigidbody2D Rigid;
     private SpriteRenderer SpriteR;
 
 
@@ -164,12 +165,11 @@ public class PlayerMovement : MonoBehaviour
         if (crouch)
         {
             PlayerCollider.size = new Vector2(PlayerCollider.size.x, crouchColliderSizeY);
-            SpriteR.sprite = pusheen_crouch;
+            animator.SetTrigger("Crouch");
         }
         if (!crouch)
         {
             PlayerCollider.size = new Vector2(PlayerCollider.size.x, default_ColliderSizeY);
-            SpriteR.sprite = pusheen;
         }
     }
 
@@ -276,7 +276,6 @@ public class PlayerMovement : MonoBehaviour
             this.transform.parent = stand.transform;
         }
     }
-
     private void OnCollisionExit2D(Collision2D stand)
     {
         if (stand.gameObject.name.Equals ("Moving Platform"))
