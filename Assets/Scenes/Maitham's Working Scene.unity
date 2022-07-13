@@ -11529,8 +11529,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -305.40002, y: 198.95001}
-  m_SizeDelta: {x: -654.83, y: -422.89}
+  m_AnchoredPosition: {x: -336.87, y: 206.5}
+  m_SizeDelta: {x: -717.76, y: -437.98}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1471888003
 MonoBehaviour:
@@ -11545,8 +11545,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   heartPrefaps: {fileID: 3037636542396917407, guid: b37611c36c449aa41b4d4f2599a4024d, type: 3}
-  health: 7
-  maxHealth: 8
+  health: 2
+  maxHealth: 4
 --- !u!114 &1471888005
 MonoBehaviour:
   m_ObjectHideFlags: 0

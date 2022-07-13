@@ -11,6 +11,8 @@ using UnityEngine.SceneManagement;
 
 public class Settings : MonoBehaviour
 {
+    const string prefName = "optionvalue";
+    const string resName = "resolutinooption";
     // Start is called before the first frame update
     public Dropdown resolutionDropdown;
     Resolution[] resolutions;
@@ -55,7 +57,7 @@ public class Settings : MonoBehaviour
             }
         }// end of for loop
         resolutionDropdown.AddOptions(options);
-        resolutionDropdown.value = currentResolutionIndex;
+        resolutionDropdown.value = PlayerPrefs.GetInt(resName, currentResolutionIndex);
         resolutionDropdown.RefreshShownValue();
     }// end of start
 
@@ -161,5 +163,13 @@ public class Settings : MonoBehaviour
     /*
     * -----------------------------------------------------------------------------
     */
+    public void ShowPanelWithKeyDown()
+    {
+        if (Input.GetKeyDown(KeyCode.W))
+        {
+
+        }
+    }
+
 
 }// end of Setting Class

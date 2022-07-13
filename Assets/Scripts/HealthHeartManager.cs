@@ -8,6 +8,23 @@ public class HealthHeartManager : MonoBehaviour
     public float health, maxHealth;
     List<HeartsManager> hearts = new List<HeartsManager>();
 
+    private void OnEnable()
+    {
+        // when player take damage draw a new heart
+        /*
+         * for example if you have a method called OnPlayerDamaged you would call that method here and draw a heart
+         * 
+         * Classname.OnPlayerDamager += drawHearts;
+         */
+    }
+
+    private void OnDisable()
+    {
+        // basiclly disable onEnable method
+        /*
+         * ClassName.OnplayerDamaged -= drawHearts;
+         */
+    }
     public void Start()
     {
         DrawHearts();
