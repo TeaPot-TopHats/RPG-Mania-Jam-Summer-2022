@@ -3,8 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Audio;
-using UnityEngine.Rendering.PostProcessing;
+//using UnityEngine.Rendering.PostProcessing;
 using System;
+using UnityEngine.SceneManagement;
+
+
 
 public class Settings : MonoBehaviour
 {
@@ -131,6 +134,29 @@ public class Settings : MonoBehaviour
     {
         Panel.SetActive(true);
     }// end of OpenPanel
+
+    /*
+    * -----------------------------------------------------------------------------
+    */
+    public GameObject CloseWithEscape;
+
+    public void ClosePanel()
+    {
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            CloseWithEscape.SetActive(false);
+        }
+        else
+        {
+            CloseWithEscape.SetActive(true);
+        }
+    }
+
+    public void MoveToScene(int sceneID)
+    {
+
+        SceneManager.LoadScene(sceneID);
+    }
 
     /*
     * -----------------------------------------------------------------------------
