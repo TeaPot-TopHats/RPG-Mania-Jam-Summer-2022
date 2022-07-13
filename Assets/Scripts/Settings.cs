@@ -3,11 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Audio;
-using UnityEngine.Rendering.PostProcessing;
+//using UnityEngine.Rendering.PostProcessing;
 using System;
+using UnityEngine.SceneManagement;
+
+
 
 public class Settings : MonoBehaviour
 {
+    const string prefName = "optionvalue";
+    const string resName = "resolutinooption";
     // Start is called before the first frame update
     public Dropdown resolutionDropdown;
     Resolution[] resolutions;
@@ -52,7 +57,7 @@ public class Settings : MonoBehaviour
             }
         }// end of for loop
         resolutionDropdown.AddOptions(options);
-        resolutionDropdown.value = currentResolutionIndex;
+        resolutionDropdown.value = PlayerPrefs.GetInt(resName, currentResolutionIndex);
         resolutionDropdown.RefreshShownValue();
     }// end of start
 
@@ -135,5 +140,36 @@ public class Settings : MonoBehaviour
     /*
     * -----------------------------------------------------------------------------
     */
+    public GameObject CloseWithEscape;
+
+    public void ClosePanel()
+    {
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            CloseWithEscape.SetActive(false);
+        }
+        else
+        {
+            CloseWithEscape.SetActive(true);
+        }
+    }
+
+    public void MoveToScene(int sceneID)
+    {
+
+        SceneManager.LoadScene(sceneID);
+    }
+
+    /*
+    * -----------------------------------------------------------------------------
+    */
+    public void ShowPanelWithKeyDown()
+    {
+        if (Input.GetKeyDown(KeyCode.W))
+        {
+
+        }
+    }
+
 
 }// end of Setting Class

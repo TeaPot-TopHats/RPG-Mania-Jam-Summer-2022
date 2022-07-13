@@ -11,7 +11,7 @@ public class Button : MonoBehaviour
         if (col.gameObject.tag == "Player")
         {
             leverOn = true;
-            transform.rotation = Quaternion.Euler(0, 180f, 0);
+            transform.localScale = new Vector3(-1, 1, 1);
         }
     }
 
