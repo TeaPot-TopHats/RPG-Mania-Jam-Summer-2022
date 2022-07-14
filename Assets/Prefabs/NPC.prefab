@@ -203,7 +203,7 @@ GameObject:
   - component: {fileID: 5907686228689972952}
   - component: {fileID: 1462052501}
   - component: {fileID: 1586473896}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: NPC
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -389,7 +389,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GroundLayer:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 128
   PlayerLayer:
     serializedVersion: 2
     m_Bits: 512

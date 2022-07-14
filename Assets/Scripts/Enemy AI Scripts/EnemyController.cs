@@ -144,29 +144,29 @@ public class EnemyController : MonoBehaviour
 
     void Dying()
     {
-        if(EnemyData.deathTime == EnemyData.EnemyDataInitializer.initialDeathTime)
-        {
-            EnemyData.vulnerable = false;
-            EnemyData.deathTime -= Time.deltaTime;
-        }
-        else if (EnemyData.deathTime > 0)
+        Debug.Log("Dying");
+        if (EnemyData.deathTime > 0)
             EnemyData.deathTime -= Time.deltaTime;
         else
         {
-            GameObject.Find("Main Camera").GetComponent<AudioManager>().Play("mj");
+            //GameObject.Find("Main Camera").GetComponent<AudioManager>().Play("mj");
             Destroy(gameObject);
         }
     }
 
     public void Attacked(int receivingDamage)
     {
+        Debug.Log("I've been smacked with "+ receivingDamage);
+
         if (EnemyData.vulnerable)
         {
             EnemyData.ResetTimers();
             EnemyData.currentHealth -= receivingDamage;
+            Debug.Log(EnemyData.IsDead());
             if (EnemyData.IsDead())
                 CurrentState = Dying;
             else
+
                 CurrentState = Hurt;
         }
 

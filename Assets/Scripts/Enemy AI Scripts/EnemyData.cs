@@ -5,8 +5,8 @@ public class EnemyData : MonoBehaviour
     public GameObject Player;
     public EnemyDataInitializer EnemyDataInitializer;
 
-    [SerializeField] public int currentHealth { get; set; }
-    public bool vulnerable { get; set; }
+    [SerializeField] public int currentHealth;
+    public bool vulnerable;
 
     public float chasePauseTime;
     public float hurtDelayTime;
@@ -19,6 +19,7 @@ public class EnemyData : MonoBehaviour
     {
         Player = GameObject.Find("Player");
         currentHealth = EnemyDataInitializer.maxHealth;
+        vulnerable = true;
         ResetTimers();
     }
 
@@ -35,6 +36,7 @@ public class EnemyData : MonoBehaviour
     {
         if (currentHealth > 0)
             return false;
+        vulnerable = false;
         return true;
     }
 

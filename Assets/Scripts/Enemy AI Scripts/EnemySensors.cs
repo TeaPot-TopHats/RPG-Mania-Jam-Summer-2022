@@ -44,7 +44,7 @@ public class EnemySensors : MonoBehaviour
         chaseRange = Physics2D.OverlapCircle(ChaseChecker.position, chaseRadius, PlayerLayer);
         //chaseRange = Physics2D.OverlapBox(AttackChecker.position, AttackZone, PlayerLayer);
         canAttack = Physics2D.OverlapCircle(AttackChecker.position, AttackZone, PlayerLayer);
-        Debug.Log(Physics2D.OverlapCircle(AttackChecker.position, AttackZone, PlayerLayer).ClosestPoint(transform.position));
+        //Debug.Log(Physics2D.OverlapCircle(AttackChecker.position, AttackZone, PlayerLayer).ClosestPoint(transform.position));
     }
 
     // Update is called once per frame
