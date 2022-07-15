@@ -22,6 +22,7 @@ public class Settings : MonoBehaviour
    // public SliderBrightnessSettings brightnessSlider;
    // public PostProcessProfile profile;
     //-----------------------------------------------
+
     void Start()
     {
 
