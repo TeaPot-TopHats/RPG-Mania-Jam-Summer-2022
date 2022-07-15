@@ -36,6 +36,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Main Game/Hallway2A.unity
     guid: ad91cde787afbde498dccfe36fa16f62
   - enabled: 1
-    path: Assets/Scenes/Main Game/CrackHead.unity
-    guid: b33b9d0002c4fba4295f657048af3d6a
+    path: Assets/Scenes/Main Game/HallToDogs.unity
+    guid: c88a267a1209b6c469a8f9842a32c6bf
+  - enabled: 1
+    path: Assets/Scenes/Main Game/DogPark0.unity
+    guid: ece83b5652cfe61478fae7a879a22091
   m_configObjects: {}

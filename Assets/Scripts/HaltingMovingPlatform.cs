@@ -10,40 +10,42 @@ public class HaltingMovingPlatform : MonoBehaviour
     [SerializeField] private bool moveLeft = true;
     [SerializeField] private bool triggered = false;
     [SerializeField] private bool stopLeft = true;
+    [SerializeField] private bool alreadyTriggered = false;
 
     
         // Update is called once per frame
         void Update()
         {
-            if (stopLeft == true)
+            if (stopLeft == true) // Platform stops on left side
             {
-                //Horizontal transformations
-                if (transform.position.x > rightBound)
+                // Horizontal transformations
+
+                if (transform.position.x > rightBound) // Once platform hits right bound
                 {
-                    triggered = false;
                     moveLeft = true;
                 }
-                if (transform.position.x < leftBound)
+                if (transform.position.x < leftBound) // Once platform hits left bound
                 {
                     moveLeft = false;
                 }
 
-                if (triggered == true && moveLeft == false)
+                if (triggered == true && moveLeft == false) 
                 {
+                    stopLeft = false;
                     transform.position = new Vector2(transform.position.x + moveSpeed * Time.deltaTime, transform.position.y);
-
+                    triggered = false;
                 }
                 if (moveLeft == true)
                 {
                     transform.position = new Vector2(transform.position.x - moveSpeed * Time.deltaTime, transform.position.y);
                 }
             }
-            else
+            if (stopLeft == false) // Platform stops on right side
             {
-                //Horizontal transformations
+                // Horizontal transformations
+
                 if (transform.position.x > rightBound)
                 {
-                    triggered = false;
                     moveLeft = true;
                 }
                 if (transform.position.x < leftBound)
@@ -59,20 +61,36 @@ public class HaltingMovingPlatform : MonoBehaviour
                 if (moveLeft == true && triggered == true)
                 {
                     transform.position = new Vector2(transform.position.x - moveSpeed * Time.deltaTime, transform.position.y);
+                    stopLeft = true;
+                    triggered = false;
                 }
+                
             }
+           
         }
-        //Detects if player is platform. Only moves to the right if player is on.
+        // Detects if player is platform. Only moves to the right if player is on.
         private void OnTriggerEnter2D(Collider2D col)
         {
-            if (moveLeft == false)
+
+            if (alreadyTriggered == false)
             {
-                if (col.gameObject.tag == "Player" && transform.position.x < rightBound)
+                if (col.gameObject.tag == "Player")
                 {
                     triggered = true;
-                }
+                    alreadyTriggered = true;
 
+                }
             }
+
         }
+        private void OnTriggerExit2D(Collider2D col)
+        {
+            if (col.gameObject.tag == "Player")
+            {
+                alreadyTriggered = false;
+            }
+    }
+
+        
      
 }
