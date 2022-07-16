@@ -5,13 +5,14 @@ using UnityEngine;
 [System.Serializable] //Means it can be saved to file.
 public class PlayerData
 {
-    public int health;
+    public float health;
     public float[] position;
+    
 
     public PlayerData (Player player)
     {
         health = player.health;
-
+        
         position = new float[3];
         position[0] = player.transform.position.x;
         position[1] = player.transform.position.y;
