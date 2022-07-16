@@ -43,6 +43,7 @@ public class EnemyBehaviors : MonoBehaviour
 
         //transform.position += new Vector3(movementDirection * Time.deltaTime * moveSpeed, 0);
         Rigid.velocity = new Vector2(movementDirection * moveSpeed, Rigid.velocity.y);
+        
     }
 
     public void Stop()

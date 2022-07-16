@@ -126,7 +126,7 @@ public class PlayerMovement : MonoBehaviour
 
         Jump();
 
-        Crouch();
+        //Crouch();
 
         LadderMovement();
     }
