@@ -2533,6 +2533,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ab131514744fdc47aefeec14d48dd78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 0}
   health: 9
   maxHealth: 0
   reload: {fileID: 0}
@@ -3702,6 +3703,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ab131514744fdc47aefeec14d48dd78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 0}
   health: 9
   maxHealth: 0
   reload: {fileID: 0}
