@@ -48,6 +48,8 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D Rigid;
     private SpriteRenderer SpriteR;
 
+    public bool sleep = false;
+
 
     private void Awake()
     {
@@ -69,6 +71,8 @@ public class PlayerMovement : MonoBehaviour
         //Movement
         movement = Input.GetAxisRaw("Horizontal");  //detects left and right for joystick and keyboard input, can be -1 or 1
         ladderMovement = Input.GetAxisRaw("Vertical");  //detects up and down for ladder movement, can be -1 or 1
+        animator.SetFloat("XVel", System.Math.Abs(movement));
+        animator.SetFloat("YVel", Rigid.velocity.y);
 
         //Detects jump key
         if (IsGrounded())

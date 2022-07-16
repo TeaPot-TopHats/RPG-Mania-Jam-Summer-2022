@@ -5,7 +5,7 @@ public class AttackScript : MonoBehaviour
 {
 
     [Header("Animations")]
-    //public Animator animator;
+    public Animator animator;
 
     [Header("Melee or Ranged")]
     [SerializeField] private bool melee = true;
@@ -31,6 +31,7 @@ public class AttackScript : MonoBehaviour
     {
         if (Input.GetMouseButton(0) && Time.time >= nextAttackTime && melee)
         {
+            
             MeeleAttack();
             nextAttackTime = Time.time + attackCooldown;
         }
@@ -42,9 +43,10 @@ public class AttackScript : MonoBehaviour
 
     void MeeleAttack()
     {
+        Debug.Log("It attacc");
         //Triggers attack animation
-        //animator.SetTrigger("Attack");
-
+        animator.SetTrigger("Attack");
+        Debug.Log("And protecc");
         //Gets all the enemies that the circle interacts with
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayer);
 
