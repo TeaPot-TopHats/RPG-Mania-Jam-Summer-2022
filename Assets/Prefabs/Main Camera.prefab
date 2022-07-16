@@ -147,7 +147,7 @@ MonoBehaviour:
     source: {fileID: 0}
     clipName: theme
     audioClip: {fileID: 8300000, guid: 956be9544ab63eb4b83149f7aa892966, type: 3}
-    isLoop: 0
+    isLoop: 1
     playOnAwake: 0
     volume: 0.3
     pitch: 1
@@ -155,7 +155,7 @@ MonoBehaviour:
     source: {fileID: 0}
     clipName: sewers
     audioClip: {fileID: 8300000, guid: 31808e9d213958d45b00c64cfe0805c8, type: 3}
-    isLoop: 0
+    isLoop: 1
     playOnAwake: 0
     volume: 0.8
     pitch: 1
@@ -163,7 +163,7 @@ MonoBehaviour:
     source: {fileID: 0}
     clipName: sewers
     audioClip: {fileID: 8300000, guid: 31808e9d213958d45b00c64cfe0805c8, type: 3}
-    isLoop: 0
+    isLoop: 1
     playOnAwake: 0
     volume: 0.8
     pitch: 1
@@ -171,7 +171,7 @@ MonoBehaviour:
     source: {fileID: 0}
     clipName: fight
     audioClip: {fileID: 8300000, guid: 2941f36d9e266e741913bc87f6937f4f, type: 3}
-    isLoop: 0
+    isLoop: 1
     playOnAwake: 0
     volume: 0.5
     pitch: 1
