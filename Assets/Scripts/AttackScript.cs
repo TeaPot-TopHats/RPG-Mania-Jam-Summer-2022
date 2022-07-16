@@ -5,7 +5,7 @@ public class AttackScript : MonoBehaviour
 {
 
     [Header("Animations")]
-    public Animator animator;
+    //public Animator animator;
 
     [Header("Melee or Ranged")]
     [SerializeField] private bool melee = true;
@@ -13,7 +13,7 @@ public class AttackScript : MonoBehaviour
     [Header("Melee")]
     [SerializeField] private Transform attackPoint;
     [SerializeField] private float attackRange = 0.3f;
-    public LayerMask enemyLayer;
+    [SerializeField] private LayerMask enemyLayer;
 
     [Header("Melee Cooldown")]
     [SerializeField] private float attackCooldown = 0.8f;
@@ -22,6 +22,11 @@ public class AttackScript : MonoBehaviour
     [Header("Melee Damage")]
     [SerializeField] private int meleeDamage = 3;
 
+    [Header("Interact")]
+    [SerializeField] private Transform interactPoint;
+    [SerializeField] private float interactRange = 0.3f;
+    [SerializeField] private LayerMask interactLayer;
+
     void Update()
     {
         if (Input.GetMouseButton(0) && Time.time >= nextAttackTime && melee)
@@ -29,12 +34,16 @@ public class AttackScript : MonoBehaviour
             MeeleAttack();
             nextAttackTime = Time.time + attackCooldown;
         }
+        if (Input.GetKey(KeyCode.E))
+        {
+            Interact();
+        }
     }
 
     void MeeleAttack()
     {
         //Triggers attack animation
-        animator.SetTrigger("Attack");
+        //animator.SetTrigger("Attack");
 
         //Gets all the enemies that the circle interacts with
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayer);
@@ -47,6 +56,13 @@ public class AttackScript : MonoBehaviour
         }
     }
 
+    void Interact()
+    {
+        Collider2D interactObject = Physics2D.OverlapCircle(interactPoint.position, interactRange, interactLayer);
+        interactObject.GetComponent<InteractableObject>().Interact();
+        Debug.Log("Interacted");
+    }
+
     //Displays the atack range
     private void OnDrawGizmosSelected()
     {
@@ -54,6 +70,7 @@ public class AttackScript : MonoBehaviour
             return;
 
         Gizmos.DrawWireSphere(attackPoint.position, attackRange);
+        Gizmos.DrawWireSphere(interactPoint.position, interactRange);
     }
 }
 //TODO: ATTACK SCRIPT - Add Ranged Attacks

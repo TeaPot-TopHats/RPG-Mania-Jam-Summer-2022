@@ -41,7 +41,7 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Animation")]
     public Animator animator;
-    private bool facingLeft = true; //original sprite faces left
+    private bool facingLeft = false; //original sprite faces left
 
     [Header("Physics")]
     [SerializeField] private BoxCollider2D PlayerCollider;
@@ -63,12 +63,6 @@ public class PlayerMovement : MonoBehaviour
         SpriteR = GetComponent<SpriteRenderer>();
         SpriteR.sprite = pusheen;
     }
-
-    void Start()
-    {
-        
-    }
-
 
     void Update()
     {
@@ -165,7 +159,7 @@ public class PlayerMovement : MonoBehaviour
         if (crouch)
         {
             PlayerCollider.size = new Vector2(PlayerCollider.size.x, crouchColliderSizeY);
-            animator.SetTrigger("Crouch");
+            //animator.SetTrigger("Crouch");
         }
         if (!crouch)
         {

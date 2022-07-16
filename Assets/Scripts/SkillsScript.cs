@@ -24,12 +24,6 @@ public class SkillsScript : MonoBehaviour
         Rigid = GetComponent<Rigidbody2D>();
     }
 
-
-    void Start()
-    {
-    }
-
-
     void Update()
     {
         //Dash
