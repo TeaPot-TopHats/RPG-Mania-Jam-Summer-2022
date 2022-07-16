@@ -64,12 +64,6 @@ public class PlayerMovement : MonoBehaviour
         SpriteR.sprite = pusheen;
     }
 
-    void Start()
-    {
-        
-    }
-
-
     void Update()
     {
         //Movement

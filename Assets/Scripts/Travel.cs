@@ -12,11 +12,11 @@ public class Travel : MonoBehaviour
     [SerializeField] private float yPos;
 
 
+
     IEnumerator OnTriggerEnter2D(Collider2D other)
     {
         if(other.gameObject.tag == "Player")
         {
-
             AsyncOperation load = SceneManager.LoadSceneAsync(sceneToLoad, LoadSceneMode.Additive);
             yield return load;
             SceneManager.UnloadSceneAsync(sceneToUnload);
