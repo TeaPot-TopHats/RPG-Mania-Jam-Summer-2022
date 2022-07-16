@@ -21,6 +21,8 @@ public class EnemyController : MonoBehaviour
     //Starting States
     [SerializeField] bool patroling;
 
+    public Player player;
+
     private void Awake()
     {
         if (patroling)
@@ -101,7 +103,7 @@ public class EnemyController : MonoBehaviour
         {
             if (EnemyData.attackingTime == EnemyData.EnemyDataInitializer.initialAttackingTime)
             {
-                //Player.Attacked(EnemyData.EnemyDataInitializer.damage);
+                player.Attacked(EnemyData.EnemyDataInitializer.damage);
                 EnemyData.attackingTime -= Time.deltaTime;
             }
             else if (EnemyData.attackingTime > 0)

@@ -5,7 +5,8 @@ using UnityEngine;
 public class HealthHeartManager : MonoBehaviour
 {
     public GameObject heartPrefaps;
-    public float health, maxHealth;
+  //  public float health, maxHealth;
+    public Player player;
     List<HeartsManager> hearts = new List<HeartsManager>();
 
     private void OnEnable()
@@ -16,6 +17,7 @@ public class HealthHeartManager : MonoBehaviour
          * 
          * Classname.OnPlayerDamager += drawHearts;
          */
+        Player.OnPlayerDamaged += DrawHearts;
     }
 
     private void OnDisable()
@@ -24,6 +26,7 @@ public class HealthHeartManager : MonoBehaviour
         /*
          * ClassName.OnplayerDamaged -= drawHearts;
          */
+        Player.OnPlayerDamaged -= DrawHearts;
     }
     public void Start()
     {
@@ -54,8 +57,8 @@ public class HealthHeartManager : MonoBehaviour
         ClearHearts(); // clear all hearts 
         // we need to see how many hearts to draw in total
         // this would be base one player max health
-        float maxHealthRemainder = maxHealth % 2; // check if the max health is even or odd
-        int heatsToMake = (int)((maxHealth / 2) + maxHealthRemainder);
+        float maxHealthRemainder = player.maxHealth % 2; // check if the max health is even or odd
+        int heatsToMake = (int)((player.maxHealth / 2) + maxHealthRemainder);
 
         for(int i = 0; i < heatsToMake; i++)
         {
@@ -64,7 +67,7 @@ public class HealthHeartManager : MonoBehaviour
 
         for(int i = 0; i < hearts.Count; i++)
         {
-            int heartStatusReminder = (int)Mathf.Clamp(health - (i * 2), 0, 2);
+            int heartStatusReminder = (int)Mathf.Clamp(player.health - (i * 2), 0, 2);
             hearts[i].setHeartImage((HeartStatus)heartStatusReminder);
         }
 
