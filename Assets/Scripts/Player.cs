@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -33,6 +34,7 @@ public class Player : MonoBehaviour
         {
             Debug.Log("HOLY SHIT!!!");
             collision.gameObject.GetComponent<Player>().Attacked(999);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     }
 
@@ -47,7 +49,7 @@ public class Player : MonoBehaviour
             health = 0;
             Debug.Log("player is dead" + receivedDamage);
             OnPlayerDeath?.Invoke();
-            reload.ReloadScene();
+           // reload.ReloadScene();
         }
     }
 }

@@ -24,7 +24,7 @@ public class AttackScript : MonoBehaviour
 
     [Header("Interact")]
     [SerializeField] private Transform interactPoint;
-    [SerializeField] private float interactRange = 0.3f;
+   // [SerializeField] private float interactRange = 0.3f;
     [SerializeField] private LayerMask interactLayer;
 
     void Update()
@@ -37,7 +37,7 @@ public class AttackScript : MonoBehaviour
         }
         if (Input.GetKey(KeyCode.E))
         {
-            Interact();
+          //  Interact();
         }
     }
 
@@ -58,12 +58,12 @@ public class AttackScript : MonoBehaviour
         }
     }
 
-    void Interact()
-    {
-        Collider2D interactObject = Physics2D.OverlapCircle(interactPoint.position, interactRange, interactLayer);
-        interactObject.GetComponent<InteractableObject>().Interact();
-        Debug.Log("Interacted");
-    }
+    //void Interact()
+    //{
+    //    Collider2D interactObject = Physics2D.OverlapCircle(interactPoint.position, interactRange, interactLayer);
+    //    interactObject.GetComponent<InteractableObject>().Interact();
+    //    Debug.Log("Interacted");
+    //}
 
     //Displays the atack range
     private void OnDrawGizmosSelected()
@@ -72,7 +72,7 @@ public class AttackScript : MonoBehaviour
             return;
 
         Gizmos.DrawWireSphere(attackPoint.position, attackRange);
-        Gizmos.DrawWireSphere(interactPoint.position, interactRange);
+       // Gizmos.DrawWireSphere(interactPoint.position, interactRange);
     }
 }
 //TODO: ATTACK SCRIPT - Add Ranged Attacks
