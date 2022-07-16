@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    public Animator animator;
     public float health, maxHealth;
     public ReloadSceneScript reload;
     public static event Action OnPlayerDamaged;
@@ -38,6 +39,7 @@ public class Player : MonoBehaviour
 
     public void Attacked(float receivedDamage)
     {
+        animator.SetTrigger("Hurt");
         Debug.Log("Player took a slap in the face" + receivedDamage);
         health -= receivedDamage;
         OnPlayerDamaged?.Invoke();
