@@ -57,7 +57,9 @@ public class EnemySensors : MonoBehaviour
         PlayerCheck();
         chaseRange = Physics2D.OverlapCircle(ChaseChecker.position, chaseRadius, PlayerLayer);
 
-        
+
+        GetComponent<Animator>().SetFloat("XVel", System.Math.Abs(GetComponent<Rigidbody2D>().velocity.x));
+        GetComponent<Animator>().SetFloat("YVel", GetComponent<Rigidbody2D>().velocity.y);
     }
 
 

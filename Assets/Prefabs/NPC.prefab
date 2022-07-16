@@ -203,6 +203,7 @@ GameObject:
   - component: {fileID: 5907686228689972952}
   - component: {fileID: 1462052501}
   - component: {fileID: 1586473896}
+  - component: {fileID: 1533748170}
   m_Layer: 8
   m_Name: NPC
   m_TagString: Untagged
@@ -273,8 +274,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 5bf684149433aa7489208fd65106552f, type: 3}
-  m_Color: {r: 0.48905614, g: 0.12482201, b: 0.8018868, a: 1}
+  m_Sprite: {fileID: -1009148591, guid: 3c04e6058d263b445838cda2746db9ae, type: 3}
+  m_Color: {r: 0.7686275, g: 0.7686275, b: 0.7686275, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -318,18 +319,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.13937402, y: -0.0499312}
+  m_Offset: {x: -0.016773567, y: -0.33939916}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.24, y: 1.71}
+    oldSize: {x: 2, y: 1.25}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1.0998623}
+  m_Size: {x: 0.91173077, y: 0.52092636}
   m_EdgeRadius: 0
 --- !u!114 &1479469691
 MonoBehaviour:
@@ -347,6 +348,7 @@ MonoBehaviour:
   EnemyBehaviors: {fileID: 1462052501}
   EnemyData: {fileID: 1586473896}
   patroling: 1
+  player: {fileID: 0}
 --- !u!114 &1479469692
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -452,12 +454,34 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Player: {fileID: 0}
   EnemyDataInitializer: {fileID: 11400000, guid: 1533baad040efeb4a9c07fd4ffabe9b2, type: 2}
+  currentHealth: 0
+  vulnerable: 0
   chasePauseTime: 0
   hurtDelayTime: 0
   deathTime: 0
   chaseTime: 0
   startAttackTime: 0
   attackingTime: 0
+--- !u!95 &1533748170
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4067169153102528755}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 81c198fc8822bda40acb14b448106e7d, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &4828309916738279154
 GameObject:
   m_ObjectHideFlags: 0

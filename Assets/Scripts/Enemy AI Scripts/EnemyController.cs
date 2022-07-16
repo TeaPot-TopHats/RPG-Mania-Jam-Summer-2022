@@ -103,6 +103,7 @@ public class EnemyController : MonoBehaviour
         {
             if (EnemyData.attackingTime == EnemyData.EnemyDataInitializer.initialAttackingTime)
             {
+                GetComponent<Animator>().SetTrigger("Attack");
                 player.Attacked(EnemyData.EnemyDataInitializer.damage);
                 EnemyData.attackingTime -= Time.deltaTime;
             }
@@ -135,6 +136,7 @@ public class EnemyController : MonoBehaviour
     }
     void Hurt()
     {
+        GetComponent<Animator>().SetTrigger("Hurt");
         if (EnemyData.hurtDelayTime > 0)
             EnemyData.hurtDelayTime -= Time.deltaTime;
         else
