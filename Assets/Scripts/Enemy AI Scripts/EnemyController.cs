@@ -21,7 +21,7 @@ public class EnemyController : MonoBehaviour
     //Starting States
     [SerializeField] bool patroling;
 
-    public Player player;
+    //public Player player;
 
     private void Awake()
     {
@@ -101,22 +101,37 @@ public class EnemyController : MonoBehaviour
         }
         else
         {
-            if (EnemyData.attackingTime == EnemyData.EnemyDataInitializer.initialAttackingTime)
-            {
-                GetComponent<Animator>().SetTrigger("Attack");
-                player.Attacked(EnemyData.EnemyDataInitializer.damage);
-                EnemyData.attackingTime -= Time.deltaTime;
-            }
-            else if (EnemyData.attackingTime > 0)
-                EnemyData.attackingTime -= Time.deltaTime;
-            else 
-            {
-                EnemyData.startAttackTime = EnemyData.EnemyDataInitializer.initialStartAttackTime;
-                EnemyData.attackingTime = EnemyData.EnemyDataInitializer.initialAttackingTime;
-                CurrentState = Chase;
-            }
+            GetComponent<Animator>().SetTrigger("Attack");
+            CurrentState = Attacking;
+            
+            
         }
     }
+
+    void Attacking()
+    {
+        if (EnemyData.attackingTime == EnemyData.EnemyDataInitializer.initialAttackingTime)
+        {
+            Debug.Log(EnemyData.attackingTime);
+            Debug.Log("Animating attack");
+
+            EnemyData.Player.GetComponent<Player>().Attacked(EnemyData.EnemyDataInitializer.damage);
+            EnemyData.attackingTime -= Time.deltaTime;
+
+        }
+        else if (EnemyData.attackingTime > 0)
+            EnemyData.attackingTime -= Time.deltaTime;
+        else
+        {
+            Debug.Log(EnemyData.attackingTime);
+            Debug.Log("Animating attack2");
+            EnemyData.startAttackTime = EnemyData.EnemyDataInitializer.initialStartAttackTime;
+            EnemyData.attackingTime = EnemyData.EnemyDataInitializer.initialAttackingTime;
+            CurrentState = Chase;
+        }
+    }
+
+
     public void EventTest()
     {
         Debug.Log("Event works!!!");

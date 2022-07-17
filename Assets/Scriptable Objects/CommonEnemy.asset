@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: CommonEnemy
   m_EditorClassIdentifier: 
   maxHealth: 4
-  damage: 0
+  damage: 1
   initialChasePauseTime: 1
   initialHurtDelayTime: 0.5
   initialDeathTime: 1
