@@ -78,11 +78,13 @@ public class PlayerMovement : MonoBehaviour
         if (IsGrounded())
         {
             collisionSide = 1;
+            GetComponent<Animator>().SetBool("Grounded", true);
             alreadyDoubleJumped = false;
         }
         else
         {
             collisionSide = 0;
+            GetComponent<Animator>().SetBool("Grounded", false);
         }
         if (Input.GetButtonDown("Jump") && collisionSide == 1 && !climbingLadder)
         {
