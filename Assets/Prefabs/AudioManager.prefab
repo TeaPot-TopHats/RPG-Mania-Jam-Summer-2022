@@ -62,7 +62,7 @@ MonoBehaviour:
     clipName: theme
     audioClip: {fileID: 8300000, guid: 956be9544ab63eb4b83149f7aa892966, type: 3}
     isLoop: 1
-    playOnAwake: 1
+    playOnAwake: 0
     volume: 0.2
     pitch: 1
   - audioType: 1
@@ -71,7 +71,7 @@ MonoBehaviour:
     audioClip: {fileID: 8300000, guid: 31808e9d213958d45b00c64cfe0805c8, type: 3}
     isLoop: 1
     playOnAwake: 0
-    volume: 0.2
+    volume: 0.9
     pitch: 1
   - audioType: 0
     source: {fileID: 0}

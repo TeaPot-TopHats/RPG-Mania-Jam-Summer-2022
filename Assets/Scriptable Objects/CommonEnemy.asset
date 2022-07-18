@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30d196b11124f1642ad4ba05515e1c42, type: 3}
   m_Name: CommonEnemy
   m_EditorClassIdentifier: 
-  maxHealth: 4
+  maxHealth: 7
   damage: 1
   initialChasePauseTime: 1
   initialHurtDelayTime: 0.5
