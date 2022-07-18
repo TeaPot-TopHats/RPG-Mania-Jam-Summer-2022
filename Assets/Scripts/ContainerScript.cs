@@ -23,6 +23,6 @@ public class ContainerScript : MonoBehaviour
             transform.position = player.transform.position;
         }
 
-        
+         
     }
 }
