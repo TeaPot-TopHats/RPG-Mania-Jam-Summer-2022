@@ -1,0 +1,121 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3521216981393670877
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3521216981393670872}
+  - component: {fileID: 3521216981393670875}
+  - component: {fileID: 3521216981393670874}
+  - component: {fileID: 3521216981393670873}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3521216981393670872
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3521216981393670877}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3521216981393670875
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3521216981393670877}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8eb2a434a4915b74f99c99aafb2bf2a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundEffectsMixerGroup: {fileID: 5245140366692931623, guid: 8fa9633d6fd4329448907a11ae6cebbb, type: 2}
+  musicMixerGroup: {fileID: 1457352677799725376, guid: 8fa9633d6fd4329448907a11ae6cebbb, type: 2}
+  sounds:
+  - audioType: 0
+    source: {fileID: 0}
+    clipName: 
+    audioClip: {fileID: 0}
+    isLoop: 0
+    playOnAwake: 0
+    volume: 0
+    pitch: 0
+  - audioType: 1
+    source: {fileID: 0}
+    clipName: theme
+    audioClip: {fileID: 8300000, guid: 956be9544ab63eb4b83149f7aa892966, type: 3}
+    isLoop: 1
+    playOnAwake: 1
+    volume: 0.2
+    pitch: 1
+  - audioType: 1
+    source: {fileID: 0}
+    clipName: sewers
+    audioClip: {fileID: 8300000, guid: 31808e9d213958d45b00c64cfe0805c8, type: 3}
+    isLoop: 1
+    playOnAwake: 0
+    volume: 0.2
+    pitch: 1
+  - audioType: 0
+    source: {fileID: 0}
+    clipName: hover
+    audioClip: {fileID: 8300000, guid: 3968daa642f5cac4c958926c19c141a8, type: 3}
+    isLoop: 0
+    playOnAwake: 0
+    volume: 1
+    pitch: 1
+  - audioType: 1
+    source: {fileID: 0}
+    clipName: fight
+    audioClip: {fileID: 8300000, guid: 2941f36d9e266e741913bc87f6937f4f, type: 3}
+    isLoop: 1
+    playOnAwake: 0
+    volume: 0.2
+    pitch: 1
+  - audioType: 0
+    source: {fileID: 0}
+    clipName: click
+    audioClip: {fileID: 8300000, guid: dd0a4ac2be2be6247aebb8701355c56a, type: 3}
+    isLoop: 0
+    playOnAwake: 0
+    volume: 0.2
+    pitch: 1
+--- !u!114 &3521216981393670874
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3521216981393670877}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44936482caceda547b0f58240da3d4b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  musicSliderText: {fileID: 0}
+  soundEffectsSliderText: {fileID: 0}
+--- !u!81 &3521216981393670873
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3521216981393670877}
+  m_Enabled: 1

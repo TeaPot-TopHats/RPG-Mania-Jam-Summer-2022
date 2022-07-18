@@ -8,12 +8,6 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
-  - enabled: 0
-    path: Assets/Scenes/mapAreas/mapArea0.unity
-    guid: b9dfe04f7ddd5924bbe7e7e21f3f675b
-  - enabled: 0
-    path: Assets/Scenes/mapAreas/mapArea1.unity
-    guid: abbf88b167279c84cb96157ebe737aa0
   - enabled: 1
     path: Assets/Scenes/Main Game/StartingScene.unity
     guid: 2a537572a37e16f458e5e85da95d4db0
@@ -27,23 +21,17 @@ EditorBuildSettings:
     path: Assets/Scenes/Main Game/Hallway1A.unity
     guid: 5af2127dbde31f6428fa10b967d83c77
   - enabled: 1
-    path: Assets/Scenes/mapAreas/BarEntry.unity
-    guid: f945cc4bbad0a4d4f8af1e93c0ccc903
-  - enabled: 1
-    path: Assets/Scenes/mapAreas/Bar.unity
-    guid: 19854095384d6cd4ba2a3bcb556456fb
-  - enabled: 1
     path: Assets/Scenes/Main Game/Hallway2A.unity
     guid: ad91cde787afbde498dccfe36fa16f62
-  - enabled: 1
-    path: Assets/Scenes/Main Game/HallToDogs.unity
-    guid: c88a267a1209b6c469a8f9842a32c6bf
   - enabled: 1
     path: Assets/Scenes/Main Game/DogPark0.unity
     guid: ece83b5652cfe61478fae7a879a22091
   - enabled: 1
     path: Assets/Scenes/Main Game/DogPark1.unity
     guid: 3ab70db57a1ce2a49aec0041c214b57f
+  - enabled: 1
+    path: Assets/Scenes/Main Game/HallToDogs.unity
+    guid: c88a267a1209b6c469a8f9842a32c6bf
   - enabled: 1
     path: Assets/Scenes/Main Game/DogBoss.unity
     guid: 8d4cba010e2e32444bc0f24e80c8ecf0

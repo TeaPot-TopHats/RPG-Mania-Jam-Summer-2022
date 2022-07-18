@@ -6198,8 +6198,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 580041362}
+  m_Children: []
   m_Father: {fileID: 951845870}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6929,12 +6928,12 @@ RectTransform:
   - {fileID: 135466042}
   - {fileID: 283000904}
   - {fileID: 2143992871}
-  m_Father: {fileID: 496742254}
-  m_RootOrder: 0
+  m_Father: {fileID: 951845870}
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 154.85995, y: 0}
+  m_AnchoredPosition: {x: -107.25, y: 99.49999}
   m_SizeDelta: {x: 149.71, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &580041363
@@ -12998,7 +12997,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &951845870
 RectTransform:
   m_ObjectHideFlags: 0
@@ -13018,6 +13017,7 @@ RectTransform:
   - {fileID: 866599286}
   - {fileID: 1964989584}
   - {fileID: 429949431}
+  - {fileID: 580041362}
   m_Father: {fileID: 1689376609}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -19387,7 +19387,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1404080946
 RectTransform:
   m_ObjectHideFlags: 0
@@ -20487,7 +20487,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -336.87003, y: 206.5}
+  m_AnchoredPosition: {x: -336.87, y: 206.5}
   m_SizeDelta: {x: -717.76, y: -437.98}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1471888003
@@ -26309,20 +26309,44 @@ MonoBehaviour:
     pitch: 0
   - audioType: 1
     source: {fileID: 0}
-    clipName: Music
-    audioClip: {fileID: 8300000, guid: 59484876eea5a784cb1a2d3a1627991d, type: 3}
+    clipName: theme
+    audioClip: {fileID: 8300000, guid: 956be9544ab63eb4b83149f7aa892966, type: 3}
     isLoop: 1
     playOnAwake: 1
     volume: 0.2
     pitch: 1
+  - audioType: 1
+    source: {fileID: 0}
+    clipName: sewers
+    audioClip: {fileID: 8300000, guid: 31808e9d213958d45b00c64cfe0805c8, type: 3}
+    isLoop: 1
+    playOnAwake: 0
+    volume: 0.2
+    pitch: 1
   - audioType: 0
     source: {fileID: 0}
-    clipName: PlayerDeath
-    audioClip: {fileID: 8300000, guid: 0a37475ffe526b740a8b511c3119e0a5, type: 3}
+    clipName: hover
+    audioClip: {fileID: 8300000, guid: 3968daa642f5cac4c958926c19c141a8, type: 3}
+    isLoop: 0
+    playOnAwake: 0
+    volume: 1
+    pitch: 1
+  - audioType: 1
+    source: {fileID: 0}
+    clipName: fight
+    audioClip: {fileID: 8300000, guid: 2941f36d9e266e741913bc87f6937f4f, type: 3}
+    isLoop: 1
+    playOnAwake: 0
+    volume: 0.2
+    pitch: 1
+  - audioType: 0
+    source: {fileID: 0}
+    clipName: click
+    audioClip: {fileID: 8300000, guid: dd0a4ac2be2be6247aebb8701355c56a, type: 3}
     isLoop: 0
     playOnAwake: 0
     volume: 0.2
-    pitch: 0
+    pitch: 1
 --- !u!114 &1906816432
 MonoBehaviour:
   m_ObjectHideFlags: 0

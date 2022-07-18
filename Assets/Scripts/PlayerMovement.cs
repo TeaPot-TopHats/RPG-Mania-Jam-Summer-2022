@@ -68,6 +68,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        WakeUp();
         //Movement
         movement = Input.GetAxisRaw("Horizontal");  //detects left and right for joystick and keyboard input, can be -1 or 1
         ladderMovement = Input.GetAxisRaw("Vertical");  //detects up and down for ladder movement, can be -1 or 1
@@ -286,7 +287,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void WakeUp()
     {
-        animator.SetBool("Sleep", false);
+        GetComponent<Animator>().SetBool("Sleep", false);
     }
 
 }

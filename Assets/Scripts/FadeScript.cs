@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Threading;
+using System.Threading.Tasks;
 
 public class FadeScript : MonoBehaviour
 {
@@ -14,8 +16,13 @@ public class FadeScript : MonoBehaviour
     }// end of show ui
     public void hideUI()
     {
+        
         fadeOut = true;
+        
+        
+        
     }// end of hide ui
+
 
     // Update is called once per frame
     void Update()
@@ -37,11 +44,19 @@ public class FadeScript : MonoBehaviour
             if (myUICanvas.alpha >= 0)
             {
                 myUICanvas.alpha -= Time.deltaTime;
+                
                 if (myUICanvas.alpha == 0)
                 {
                     fadeOut = false;
                 }// end of if myUIcanvas.alpha >= 1
+                
             }// end of if myUIcanvas
+
+            
         }// end of fadeOUT
-        }// end of update
+        if (myUICanvas.alpha == 0)
+        {
+            myUICanvas.interactable = false;
+        }
+    }// end of update
 }

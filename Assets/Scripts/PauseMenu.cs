@@ -46,12 +46,12 @@ public class PauseMenu : MonoBehaviour
         GameIsPaused = true;
     }// end of pause method
 
-    void UnlockMouseCursor()
+    public void UnlockMouseCursor()
     {
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
     }
-    void LockMouseCursor()
+     public void LockMouseCursor()
     {
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = false;

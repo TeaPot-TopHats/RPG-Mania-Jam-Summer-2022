@@ -34,8 +34,11 @@ public class Player : MonoBehaviour
         if (collision.gameObject.CompareTag("Death Trap"))
         {
             Debug.Log("HOLY SHIT!!!");
-            collision.gameObject.GetComponent<Player>().Attacked(999);
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            Attacked(999);
+            Debug.Log("ouchy!!!");
+            //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            SceneManager.LoadScene("StartingScene");
+            Debug.Log("help mom!!!");
         }
     }
 
