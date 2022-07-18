@@ -48,7 +48,7 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D Rigid;
     private SpriteRenderer SpriteR;
 
-    public bool sleep = false;
+    //public bool sleep;
 
 
     private void Awake()
@@ -121,7 +121,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-
+    
     private void FixedUpdate()
     {
         MovePlayer();
@@ -282,6 +282,11 @@ public class PlayerMovement : MonoBehaviour
         {
             this.transform.parent = null;
         }
+    }
+
+    public void WakeUp()
+    {
+        animator.SetBool("Sleep", false);
     }
 
 }
